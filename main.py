@@ -8,6 +8,8 @@ conexion = conexion_a_la_db()
 eliminar_tablas(conexion)
 crear_tablas(conexion)
 
-mi_equipo = ['rayos makuines','tauramena', 'santiaguinho', 'nosexd', 'yo', 'aja', '322', 'asdasd']
+mi_equipo = ['rayos makuines','tauramena', 'santiaguinho', 'nosexd', 'yo', 'aja', '234', 'dlopezda@unal.edu.co']
 crear_equipo(conexion, mi_equipo)
+consultar_equipo_por_id_user(conexion)
+crear_equipo_user(conexion)
 consultar_equipo_por_id_user(conexion)
