@@ -3,17 +3,17 @@
 import smtplib, ssl
 from email.message import EmailMessage
 
+
 def crear_equipo(conexion, equipo):
   """
   Función creación de equipo.
   Recibe un objeto Connection.
   Recibe una lista de la siguiente manera:
-  [num_equipo, pais_sede, director , marca_bicicleta, marca_ciclocomputador,
-  direccion_sede_central, telefono, correo_electronico]
+  [nombre, pais_sede, director, marca_bicicleta, marca_ciclocomputador, direccion_sede_central, telefono, correo_electronico]
   """
   #falta verficar equipo
   cursor              = conexion.cursor()
-  sentencia_insercion = 'INSERT INTO equipos(pais_sede, director, marca_bicicleta, marca_ciclocomputador, direccion_sede_central, telefono, correo_electronico) VALUES(?,?,?,?,?,?,?)'
+  sentencia_insercion = 'INSERT INTO equipos(nombre, pais_sede, director, marca_bicicleta, marca_ciclocomputador, direccion_sede_central, telefono, correo_electronico) VALUES(?,?,?,?,?,?,?,?)'
   cursor.execute(sentencia_insercion, equipo)
   conexion.commit()
 
@@ -25,9 +25,8 @@ def consultar_equipo_por_id(conexion, id_equipo):
   """
   cursor             = conexion.cursor()
   sentencia_consulta = f'SELECT * FROM equipos WHERE num_equipo = {id_equipo}'
-  respuesta_consulta = cursor.execute(sentencia_consulta)
-  equipo = respuesta_consulta.fetchall()
-  return equipo
+  respuesta_consulta = cursor.execute(sentencia_consulta).fetchall()
+  return respuesta_consulta
 
 def cambiar_sede_equipo(conexion, id_equipo, nueva_direccion):
   """
