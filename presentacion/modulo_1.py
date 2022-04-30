@@ -1,5 +1,4 @@
-from tkinter.messagebox import RETRY
-from logica.modulo_1 import crear_equipo, consultar_equipo_por_id
+from logica.modulo_1 import crear_equipo, consultar_equipo_por_id, cambiar_sede_equipo
 from terminaltables import AsciiTable
 
 def crear_equipo_user(conexion):
@@ -29,4 +28,9 @@ def consultar_equipo_por_id_user(conexion):
         tabla_equipo.title = ' Consulta de equipos '
         print(tabla_equipo.table)
 
-
+def cambiar_sede_equipo_user(conexion):
+    id_equipo       = input('Ingrese el número del equipo: ')
+    nuevo_pais      = input('Ingrese el nuevo país de sede: ')
+    nueva_direccion = input('Ingrese el la dirección de la nueva sede del equipo: ')
+    cambiar_sede_equipo(conexion,id_equipo, nuevo_pais, nueva_direccion)
+    print(f'La información de la sede del equipo {id_equipo} ha sido modificada.')

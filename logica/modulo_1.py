@@ -16,11 +16,14 @@ def crear_equipo(conexion, equipo):
   numero_de_telefono  = equipo[6]
   correo_del_equipo   = equipo[7] 
 
-  patron_numero_de_telefono = r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$'
-  patron_correo_electronico = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
-  if  not bool(re.fullmatch(patron_numero_de_telefono, numero_de_telefono)):
+  patron_numero_de_telefono       = r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$'
+  patron_correo_electronico       = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+  correo_de_electronico_es_valido = not bool(re.fullmatch(patron_numero_de_telefono, numero_de_telefono))
+  numero_de_telefono_es_valido    = not bool(re.fullmatch(patron_correo_electronico, correo_del_equipo))
+  
+  if correo_de_electronico_es_valido:
     raise ValueError(f'el número de teléfono {numero_de_telefono} no es válido')
-  if not bool(re.fullmatch(patron_correo_electronico, correo_del_equipo)):
+  if numero_de_telefono_es_valido:
     raise ValueError(f'la dirección de correo {correo_del_equipo} no válida')
 
   cursor              = conexion.cursor()
@@ -40,7 +43,7 @@ def consultar_equipo_por_id(conexion, id_equipo):
   respuesta_consulta = cursor.execute(sentencia_consulta).fetchall()
   return respuesta_consulta
 
-def cambiar_sede_equipo(conexion, id_equipo, nueva_direccion):
+def cambiar_sede_equipo(conexion, id_equipo, nuevo_pais, nueva_direccion):
   """
   Función cambio de sede central de un equipo.
   Recibe un objeto Connection (conexion).
@@ -48,7 +51,7 @@ def cambiar_sede_equipo(conexion, id_equipo, nueva_direccion):
   Recibe la nueva dirección de sede.
   """
   cursor                  = conexion.cursor()
-  sentencia_actualizacion = f'UPDATE equipo SET direccion_sede_central = {nueva_direccion} WHERE num_equipo = {id_equipo}'
+  sentencia_actualizacion = f'UPDATE equipos SET pais_sede = "{nuevo_pais}", direccion_sede_central = "{nueva_direccion}" WHERE num_equipo = {id_equipo}'
   cursor.execute(sentencia_actualizacion)
   conexion.commit()
 
