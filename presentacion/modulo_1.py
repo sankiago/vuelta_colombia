@@ -22,7 +22,7 @@ def consultar_equipo_por_id_user(conexion):
         print(f'No se ha encontrado el equipo número {id_equipo}')
     else:
         equipo = [list(equipo) for equipo in respuesta_consulta]
-        encabezados_de_la_tabla = [['Número de equpio', 'Nombre', 'País', 'Director', 'Marca de bicicleta', 'Marca de ciclocomputador','Dirección de sede central', 'Teléfono', 'Correo electrónico']]
+        encabezados_de_la_tabla = [['Número de equipo', 'Nombre', 'País', 'Director', 'Marca de bicicleta', 'Marca de ciclocomputador','Dirección de sede central', 'Teléfono', 'Correo electrónico']]
         datos_de_la_tabla = encabezados_de_la_tabla + equipo
         tabla_equipo = AsciiTable(datos_de_la_tabla)
         tabla_equipo.title = ' Consulta de equipos '
