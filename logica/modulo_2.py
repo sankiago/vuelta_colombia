@@ -12,7 +12,6 @@ def crear_ciclista(conexion, ciclista):
   """
   cursor              = conexion.cursor()
   sentencia_insercion = 'INSERT INTO ciclistas(num_identificacion ,nombre ,apellido ,fecha_de_nacimiento ,pais ,num_equipo ,ranking_UIC) VALUES(?,?,?,?,?,?,?)'
-  print(ciclista)
   cursor.execute(sentencia_insercion, ciclista)
   conexion.commit()
 

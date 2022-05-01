@@ -4,6 +4,8 @@ from logica.modulo_2 import crear_ciclista, actualizar_ranking_UIC, consultar_in
 from terminaltables  import AsciiTable
 from datetime        import datetime
 
+from presentacion.modulo_3 import crear_etapa_user
+
 def crear_ciclista_user(conexion):
     print('Ingrese los datos del ciclista participante.')
     num_identificacion     = input('Número de identificación: ')
@@ -38,6 +40,7 @@ def crear_ciclista_user(conexion):
     ciclista               = [num_identificacion ,nombre ,apellido ,fecha_nacimiento_timestamp ,pais ,num_equipo ,ranking_UIC]
     
     crear_ciclista(conexion, ciclista)
+    crear_etapa_user(conexion, ciclista)
     print(f'El ciclista {nombre} se ha registrado con éxito')
     
 
