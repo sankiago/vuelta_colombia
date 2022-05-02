@@ -19,7 +19,7 @@ def crear_tablas(conexion):
 
   sentencia_equipos       = 'CREATE TABLE          equipos(num_equipo INTEGER PRIMARY KEY AUTOINCREMENT              , nombre TEXT                ,              pais_sede TEXT                         , director TEXT      , marca_bicicleta TEXT, marca_ciclocomputador TEXT,  direccion_sede_central TEXT,  telefono INTEGER,       correo_electronico TEXT)'
   sentencia_ciclistas     = 'CREATE TABLE        ciclistas(num_inscripcion_ciclista INTEGER PRIMARY KEY AUTOINCREMENT, num_identificacion INTEGER , nombre TEXT        , apellido TEXT       , fecha_de_nacimiento INTEGER, pais TEXT,   num_equipo INTEGER, fotografia TEXT, ranking_UIC TEXT, FOREIGN KEY(num_equipo) REFERENCES equipos(num_equipo))'
-  sentencia_clasificacion = 'CREATE TABLE    clasificacion(num_etapa INTEGER                                         , num_ciclista INTEGER       , num_etapa_num_ciclista TEXT PRIMARY KEY, posicion_etapa TEXT, tiempo_empleado TEXT, num_equipo INTEGER, retirado BOOLEAN, FOREIGN KEY(num_equipo) REFERENCES equipos(num_equipo))'     
+  sentencia_clasificacion = 'CREATE TABLE    clasificacion(num_etapa INTEGER                                         , num_ciclista INTEGER       , num_etapa_num_ciclista TEXT PRIMARY KEY, posicion_etapa TEXT, tiempo_empleado TEXT, num_equipo INTEGER, esta_retirado BOOLEAN, FOREIGN KEY(num_equipo) REFERENCES equipos(num_equipo), FOREIGN KEY(num_ciclista) REFERENCES ciclistas(num_inscripcion_ciclista))'     
 
   cursor.execute(sentencia_equipos)
   cursor.execute(sentencia_ciclistas)
