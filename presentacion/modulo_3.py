@@ -11,6 +11,7 @@ def crear_etapa_user(conexion):
     #Llave Primaria artificial
     etapa_ciclista                      = str(numero_etapa) + '-' + str(numero_inscripcion_ciclista)
     tiempo_empleado                     = input('Tiempo Empleado (HH:MM): ')
+    tiempo_empleado_conversion          = tiempo_empleado
     num_equipo                          = input('Número de equipo en el que corre: ')
     esta_retirado                       = input('¿El ciclista se retiro? Y/N: ')
 
@@ -18,12 +19,6 @@ def crear_etapa_user(conexion):
         retirado = 'Si'
     elif esta_retirado.upper() == 'N' or esta_retirado.upper() == 'NO':
         retirado = 'No'
-    """elif esta_retirado.upper() != 'Y' or 'YES' or 'N' or 'NO':
-        etapa_ciclista = input('Digite una entrada valida Y/N')
-        if  esta_retirado.upper() == "Y" or "YES":
-            esta_retirado = 'Si'
-        elif esta_retirado.upper() == 'N' or 'NO':
-            esta_retirado = 'No'"""
 
     if len(consultar_equipo_por_id(conexion, num_equipo)) == 0:
         raise ValueError('El equipo seleccionado no existe')

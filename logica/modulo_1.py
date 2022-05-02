@@ -18,8 +18,8 @@ def crear_equipo(conexion, equipo):
 
   patron_numero_de_telefono       = r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$'
   patron_correo_electronico       = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
-  correo_de_electronico_es_valido = not bool(re.fullmatch(patron_numero_de_telefono, numero_de_telefono))
-  numero_de_telefono_es_valido    = not bool(re.fullmatch(patron_correo_electronico, correo_del_equipo))
+  correo_de_electronico_es_valido = not bool(re.fullmatch(patron_correo_electronico, correo_del_equipo))
+  numero_de_telefono_es_valido    = not bool(re.fullmatch(patron_numero_de_telefono, numero_de_telefono))
   
   if correo_de_electronico_es_valido:
     raise ValueError(f'el número de teléfono {numero_de_telefono} no es válido')
