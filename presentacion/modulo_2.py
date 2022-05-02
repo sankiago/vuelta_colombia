@@ -7,6 +7,10 @@ from datetime        import datetime
 from presentacion.modulo_3 import crear_etapa_user
 
 def crear_ciclista_user(conexion):
+    '''
+    Funcion que toma los datos del ciclista para luego enviarlos a la parte logica
+    Recibe conexion como objeto y envia dos parametros a dos funciones diferentes
+    '''
     print('Ingrese los datos del ciclista participante.')
     num_identificacion     = input('Número de identificación: ')
     nombre                 = input('Nombre: ')
@@ -45,6 +49,7 @@ def crear_ciclista_user(conexion):
     
 
 def cambiar_ranking_UIC_user(conexion):
+    '''Se cambia la informacion de fue digitada en un principio en la columna de Ranking UIC'''
     num_ciclista        = input('Ingrese el número de inscripcion del ciclista : ')
     nuevo_ranking_UIC   = input('Ingrese el nuevo ranking UIC: ')
     actualizar_ranking_UIC(conexion, num_ciclista, nuevo_ranking_UIC)

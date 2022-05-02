@@ -56,16 +56,16 @@ def main(stdscr):
     # turn off cursor blinking
     curses.curs_set(0)
 
-    # color scheme for selected row
+    # Color para la fila(opción) seleccionada
     curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_WHITE)
 
-    # specify the current selected row
+    # Especifica la fila(opción) seleccionada actualmente
     current_row = 0
 
     print('aaa')
     # print_center(stdscr,banner)
 
-    # print the menu
+    # Imprime el menu
     print_menu(stdscr, current_row)
     imprimir_multilinea_centrado(stdscr, current_row, banner)
 
@@ -80,7 +80,7 @@ def main(stdscr):
         elif key == curses.KEY_ENTER or key in [10, 13]:
             print_center(stdscr, "You selected '{}'".format(menu[current_row]))
             stdscr.getch()
-            # if user selected last row, exit the program
+            # Si el usuario seleccion la ultima fila, se acaba el programa
             if current_row == len(menu)-1:
                 break
         print_menu(stdscr, current_row)

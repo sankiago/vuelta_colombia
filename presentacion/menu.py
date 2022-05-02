@@ -15,9 +15,12 @@ banner = """  _   __         ____         _____     __           __   _
 """
 
 def limpiar_pantalla():
+    '''Como su nombre lo dice, esta función se encarga de limpiar la pantalla, es decir, 
+    borrar los elementos que se encuentran en la misma'''
     os.system('cls' if os.name == 'nt' else 'clear')
 
 limpiar_pantalla()
+
 modulos = {
     'opciones' : ['Gestionar equipos','Gestionar ciclistas','Cargar resultados de una etapa','Consultar clasificación general o por etapas', 'Salir'],
     1 : {
@@ -43,6 +46,8 @@ modulos = {
 }
 
 def mostrar_menu(conexion):
+    '''Esta funcion contiene los elementos con los que el usuario interactuara, 
+    lo que se mostrara en la terminal'''
     titulo_menu                    = banner + '\n¿Qué desea hacer el día de hoy?'
     modulo_seleccionado            = pick(modulos['opciones'], titulo_menu)[1] + 1
     if modulo_seleccionado == 5:

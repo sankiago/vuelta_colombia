@@ -10,7 +10,7 @@ def consulta_etapa(conexion,etapa,orden):
 	Recibe el parámetro de orden de tabla.
 	Consulta la informacion de la clasificación de la etapa, ordenada según el parámetro recibido
 	'''
-	#Falta hacer la verificación de el parámetro orden en la capa de presentación
+	
 	cursor = conexion.cursor()
 	sentencia_consulta = f'''SELECT clasificacion.num_etapa,
 	ciclistas.num_inscripcion_ciclista,

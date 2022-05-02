@@ -2,6 +2,9 @@ from logica.modulo_1 import crear_equipo, consultar_equipo_por_id, cambiar_sede_
 from terminaltables import AsciiTable
 
 def crear_equipo_user(conexion):
+    '''Funcion que crea el equipo
+    Recibe el ojeto conexion
+    Devuelve una lista [nombre, pais, director, marca_bicicleta, marca_ciclocomputador, direccion_sede_central, telefono, correo_electronico] '''
     print('Ingrese los datos del nuevo equipo.')
     nombre                 = input('nombre: ')
     pais                   = input('pais: ')
@@ -16,6 +19,10 @@ def crear_equipo_user(conexion):
     print(f'El equipo {nombre} se ha creado con éxito')
 
 def consultar_equipo_por_id_user(conexion):
+    '''
+    Funcion que encuentra un equipo por el id del ciclista
+    Recibe el objeto conexion
+    '''
     id_equipo = input('Ingrese el número del equipo: ')
     respuesta_consulta = consultar_equipo_por_id(conexion, id_equipo)
     if len(respuesta_consulta) == 0:
@@ -29,6 +36,10 @@ def consultar_equipo_por_id_user(conexion):
         print(tabla_equipo.table)
 
 def cambiar_sede_equipo_user(conexion):
+    '''
+    Funcion que se encarga de cambiar la sede en la que se inscribio el equipo
+    Recibe como objeto conexion
+    '''
     id_equipo       = input('Ingrese el número del equipo: ')
     nuevo_pais      = input('Ingrese el nuevo país de sede: ')
     nueva_direccion = input('Ingrese el la dirección de la nueva sede del equipo: ')
