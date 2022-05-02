@@ -1,34 +1,70 @@
-from   time import sleep
+from pick import pick
+from presentacion.modulo_1 import crear_equipo_user,   consultar_equipo_por_id_user, cambiar_sede_equipo_user
+from presentacion.modulo_2 import crear_ciclista_user, cambiar_ranking_UIC_user,     consultar_info_vigente_user
+from presentacion.modulo_3 import crear_etapa_user,    actualizar_info_ciclista_user
 import os
-banner = """
-  _   __         ____         _____     __           __   _     
+from time import sleep
+
+banner = """  _   __         ____         _____     __           __   _     
  | | / /_ _____ / / /____ _  / ___/__  / /__  __ _  / /  (_)__ _
  | |/ / // / -_) / __/ _ `/ / /__/ _ \/ / _ \/  ' \/ _ \/ / _ `/
  |___/\_,_/\__/_/\__/\_,_/  \___/\___/_/\___/_/_/_/_.__/_/\_,_/
-"""
-vuelta_colombia_2 = """
- __   __        _ _           ___     _           _    _      
- \ \ / /  _ ___| | |_ __ _   / __|___| |___ _ __ | |__(_)__ _ 
-  \ V / || / -_) |  _/ _` | | (__/ _ \ / _ \ '  \| '_ \ / _` |
-   \_/ \_,_\___|_|\__\__,_|  \___\___/_\___/_|_|_|_.__/_\__,_|
+
+ 
+----------------------------------------------------------------
 """
 
-opciones = {
-    1 : '   1. Crear nuevo equipo\n',
-    2 : '   2. Consultar información de equipo por número de identificación\n',
-    3 : '   3. Cambiar sede central de equipo\n',
+def limpiar_pantalla():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+limpiar_pantalla()
+modulos = {
+    'opciones' : ['Gestionar equipos','Gestionar ciclistas','Cargar resultados de una etapa','Consultar clasificación general o por etapas', 'Salir'],
+    1 : {
+        'opciones':['Crear nuevo equipo', 'Consultar equipo', 'Cambiar sede central de un equipo'],
+        1 : crear_equipo_user,
+        2 : consultar_equipo_por_id_user,
+        3 : cambiar_sede_equipo_user,
+    },
+    2:{
+        'opciones': ['Crear nuevo ciclista', 'Actualizar ranking UIC de un ciclista', 'Ver ciclistas'],
+        1 : crear_ciclista_user,
+        2 : cambiar_ranking_UIC_user,
+        3 : consultar_info_vigente_user,
+    },
+    3:{
+        'opciones': ['Cargar tiempo de la etapa un ciclista', 'Actualizar tiempo de la etapa de un ciclista'],
+        1: crear_etapa_user,
+        2: actualizar_info_ciclista_user,
+    },
+    4:{
+        'opciones': ['Consultar clasificación de una etapa', 'Consultar clasificación general']
+    }
 }
 
-menu_text = """
-Bienvenido a vuelta colombia ¿Qué desea hacer en estos momentos?
+def mostrar_menu(conexion):
+    titulo_menu                    = banner + '\n¿Qué desea hacer el día de hoy?'
+    modulo_seleccionado            = pick(modulos['opciones'], titulo_menu)[1] + 1
+    if modulo_seleccionado == 5:
+        quit()
+    opcion_de_funcion_seleccionada = pick(modulos[modulo_seleccionado]['opciones'], modulos['opciones'][modulo_seleccionado + 1])[1] + 1
+    funcion_seleccionada           = modulos[modulo_seleccionado][opcion_de_funcion_seleccionada] 
 
-Digite el número de la opción en la que esta interesado
-Gestión de equipos:
-"""
 
-os.clear()
-print(banner)
-print()
-print('')
-print('Gestión de equipos')
-print(' ')
+    ejecutar_funcion_de_nuevo = True
+    while ejecutar_funcion_de_nuevo:
+        try:
+            funcion_seleccionada(conexion)
+            sleep(3)
+        except ValueError as error:
+            print(f'\n{error}\n\n')
+            funcion_seleccionada(conexion)
+            sleep(3)
+        descripcion_de_la_funcion_seleccionada = modulos[modulo_seleccionado]['opciones'][opcion_de_funcion_seleccionada - 1]
+        pregunta  = f'¿Desea {descripcion_de_la_funcion_seleccionada.lower()} de nuevo?'
+        opciones  = ['Sí', 'No']
+        respuesta = not bool(pick(opciones, pregunta)[1])
+        ejecutar_funcion_de_nuevo = respuesta
+        mostrar_menu(conexion)
+
+
