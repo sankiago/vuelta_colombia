@@ -35,23 +35,8 @@ def consulta_general(conexion,orden):
 	Consulta la informacion de la clasificación general de la carrera, ordenada según el parámetro recibido
 	'''
 	cursor = conexion.cursor()
-	sentencia_consulta = f''
-	if orden == 'tiempo_empleado':
-		sentencia_consulta = f'''SELECT 
-			ciclistas.num_inscripcion_ciclista,
-			ciclistas.nombre,
-			ciclistas.apellido,
-			ciclistas.pais,
-			equipos.nombre AS nombre_equipo,
-			SUM(clasificacion.tiempo_empleado) AS "Tiempo total"
-			FROM ciclistas 
-			INNER JOIN equipos ON  ciclistas.num_equipo = equipos.num_equipo 
-			INNER JOIN clasificacion ON ciclistas.num_inscripcion_ciclista = clasificacion.num_ciclista 
-			GROUP BY ciclistas.num_inscripcion_ciclista
-			ORDER BY {orden} DESC
-			'''
-	else:
-		sentencia_consulta = f'''SELECT 
+
+	sentencia_consulta = f'''SELECT 
 			ciclistas.num_inscripcion_ciclista,
 			ciclistas.nombre,
 			ciclistas.apellido,
