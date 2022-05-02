@@ -36,24 +36,26 @@ def crear_ciclista_user(conexion):
         raise ValueError('El equipo seleccionado no existe')
 
     #sin implementar: fotografia             = input('Fotografía: ')
-    ranking_UIC            = input('Ranking UCI: ')
+    ranking_UCI           = input('Ranking UCI: ')
     
     #convertir fecha a timestamp
-    fecha_nacimiento_timestamp = datetime(int(anio), int(mes), int(dia)).timestamp()
-    print(fecha_nacimiento_timestamp)
-    ciclista               = [num_identificacion ,nombre ,apellido ,fecha_nacimiento_timestamp ,pais ,num_equipo ,ranking_UIC]
+    #fecha_nacimiento_timestamp = datetime(int(anio), int(mes), int(dia))
+    #fecha_nacimiento_timestamp = fecha_nacimiento_timestamp.timestamp()
+    fecha_nacimiento_formateada = f'{anio}-{mes}-{dia}'
+    print(fecha_nacimiento_formateada)
+    ciclista               = [num_identificacion ,nombre ,apellido ,fecha_nacimiento_formateada ,pais ,num_equipo ,ranking_UCI]
     
     crear_ciclista(conexion, ciclista)
-    crear_etapa_user(conexion, ciclista)
+    #crear_etapa_user(conexion, ciclista)
     print(f'El ciclista {nombre} se ha registrado con éxito')
     
 
 def cambiar_ranking_UIC_user(conexion):
-    '''Se cambia la informacion de fue digitada en un principio en la columna de Ranking UIC'''
+    '''Se cambia la informacion de fue digitada en un principio en la columna de Ranking UCI'''
     num_ciclista        = input('Ingrese el número de inscripcion del ciclista : ')
-    nuevo_ranking_UIC   = input('Ingrese el nuevo ranking UIC: ')
+    nuevo_ranking_UIC   = input('Ingrese el nuevo ranking UCI: ')
     actualizar_ranking_UIC(conexion, num_ciclista, nuevo_ranking_UIC)
-    print(f'El ranking UIC del ciclista con número de inscripción {num_ciclista} ha sido actualizado.')
+    print(f'El ranking UCI del ciclista con número de inscripción {num_ciclista} ha sido actualizado.')
 
 
 def consultar_info_vigente_user(conexion):
@@ -62,12 +64,6 @@ def consultar_info_vigente_user(conexion):
         print(f'No se ha encontrado información')
     else:
         ciclistas = [list(ciclista) for ciclista in respuesta_consulta]
-        #convirtiendo unixtime en DD/MM/AAA
-        for ciclista in ciclistas:
-            #ciclisa[4] es el unixtime que devuelve la db
-            
-            ciclista[4] = datetime.utcfromtimestamp(ciclista[4]).strftime('%d/%m/%Y')
-       
         
 
         encabezados_de_la_tabla = [['Número de inscripción', 'Número de identificación', 'Nombre', 'Apellido', 'Fecha de nacimiento (DD/MM/AAAA)', 'Pais de origen','Número de equipo en el que corre', 'fotografia', 'Ranking UCI']]

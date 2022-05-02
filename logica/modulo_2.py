@@ -11,7 +11,7 @@ def crear_ciclista(conexion, ciclista):
   [num_identificacion, nombre, apellido, fecha_nacimiento, pais, num_equipo,ranking_UIC]
   """
   cursor              = conexion.cursor()
-  sentencia_insercion = 'INSERT INTO ciclistas(num_identificacion ,nombre ,apellido ,fecha_de_nacimiento ,pais ,num_equipo ,ranking_UIC) VALUES(?,?,?,?,?,?,?)'
+  sentencia_insercion = 'INSERT INTO ciclistas(num_identificacion ,nombre ,apellido ,fecha_de_nacimiento ,pais ,num_equipo ,ranking_UIC) VALUES(?,?,?,strftime("%s", ?),?,?,?)'
   cursor.execute(sentencia_insercion, ciclista)
   conexion.commit()
 
@@ -34,7 +34,9 @@ def consultar_info_vigente(conexion):
   Recibe un objeto Connection (conexion).
   """
   cursor             = conexion.cursor()
-  sentencia_consulta = f'SELECT * FROM ciclistas'
+  #SELECT strftime('%d/%m/%Y',fecha_de_nacimiento,'unixepoch') from ciclistas
+  #num_inscripcion_ciclista, num_identificacion , nombre, apellido , fecha_de_nacimiento , pais,   num_equipo, ranking_UIC 
+  sentencia_consulta = f'SELECT num_inscripcion_ciclista, num_identificacion , nombre, apellido , strftime("%d/%m/%Y",fecha_de_nacimiento,"unixepoch") , pais,   num_equipo, ranking_UIC FROM ciclistas'
   respuesta_consulta = cursor.execute(sentencia_consulta).fetchall()
   return respuesta_consulta
 

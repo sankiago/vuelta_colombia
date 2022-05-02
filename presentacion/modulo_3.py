@@ -22,8 +22,8 @@ def crear_etapa_user(conexion):
         raise ValueError('El tiempo ingresado no corresponde al formato (HH:MM)')
     if not (horas.isdecimal() and minutos.isdecimal()):
         raise ValueError('Solo se admiten números en el formato (HH:MM)')
-    tiempo_convertido = minutos
-    minutos = horas*60
+    tiempo_convertido = int(minutos)
+    minutos = int(horas)*60
     tiempo_convertido = tiempo_convertido + minutos
 
     num_equipo                          = input('Número de equipo en el que corre: ')
@@ -60,8 +60,8 @@ def actualizar_info_ciclista_user(conexion):
         raise ValueError('El tiempo ingresado no corresponde al formato (HH:MM)')
     if not (horas.isdecimal() and minutos.isdecimal()):
         raise ValueError('Solo se admiten números en el formato (HH:MM)')
-    tiempo_convertido = minutos
-    minutos = horas*60
+    tiempo_convertido = int(minutos)
+    minutos = int(horas)*60
     tiempo_convertido = tiempo_convertido + minutos
     actualizar_info_ciclista(conexion, nueva_posicion, num_ciclista, tiempo_convertido)
     print(f'El tiempo del ciclista con número de inscripción {num_ciclista} ha sido actualizado.')

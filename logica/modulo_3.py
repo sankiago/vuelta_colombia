@@ -14,7 +14,7 @@ def crear_etapa(conexion, info_etapa):
   """
 
   cursor              = conexion.cursor()
-  sentencia_insercion = 'INSERT INTO clasificacion(num_etapa, num_ciclista, num_etapa_num_ciclista, posicion_etapa , tiempo_empleado ,num_equipo , retirado ) VALUES(?,?,?,?,?,?,?)'
+  sentencia_insercion = 'INSERT INTO clasificacion(num_etapa, num_ciclista, num_etapa_num_ciclista, posicion_etapa , tiempo_empleado ,num_equipo , esta_retirado ) VALUES(?,?,?,?,?,?,?)'
   cursor.execute(sentencia_insercion, info_etapa)
   conexion.commit()
 
