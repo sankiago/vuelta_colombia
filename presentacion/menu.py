@@ -21,24 +21,24 @@ limpiar_pantalla()
 modulos = {
     'opciones' : ['Gestionar equipos','Gestionar ciclistas','Cargar resultados de una etapa','Consultar clasificación general o por etapas', 'Salir'],
     1 : {
-        'opciones':['Crear nuevo equipo', 'Consultar equipo', 'Cambiar sede central de un equipo'],
+        'opciones':['Crear nuevo equipo', 'Consultar equipo', 'Cambiar sede central de un equipo', 'Regresar al menú principal'],
         1 : crear_equipo_user,
         2 : consultar_equipo_por_id_user,
         3 : cambiar_sede_equipo_user,
     },
     2:{
-        'opciones': ['Crear nuevo ciclista', 'Actualizar ranking UIC de un ciclista', 'Ver ciclistas'],
+        'opciones': ['Crear nuevo ciclista', 'Actualizar ranking UIC de un ciclista', 'Ver ciclistas','Regresar al menú principal'],
         1 : crear_ciclista_user,
         2 : cambiar_ranking_UIC_user,
         3 : consultar_info_vigente_user,
     },
     3:{
-        'opciones': ['Cargar tiempo de la etapa un ciclista', 'Actualizar tiempo de la etapa de un ciclista'],
+        'opciones': ['Cargar tiempo de la etapa un ciclista', 'Actualizar tiempo de la etapa de un ciclista','Regresar al menú principal'],
         1: crear_etapa_user,
         2: actualizar_info_ciclista_user,
     },
     4:{
-        'opciones': ['Consultar clasificación de una etapa', 'Consultar clasificación general']
+        'opciones': ['Consultar clasificación de una etapa', 'Consultar clasificación general','Regresar al menú principal']
     }
 }
 
@@ -47,24 +47,28 @@ def mostrar_menu(conexion):
     modulo_seleccionado            = pick(modulos['opciones'], titulo_menu)[1] + 1
     if modulo_seleccionado == 5:
         quit()
-    opcion_de_funcion_seleccionada = pick(modulos[modulo_seleccionado]['opciones'], modulos['opciones'][modulo_seleccionado + 1])[1] + 1
-    funcion_seleccionada           = modulos[modulo_seleccionado][opcion_de_funcion_seleccionada] 
-
-
-    ejecutar_funcion_de_nuevo = True
-    while ejecutar_funcion_de_nuevo:
-        try:
-            funcion_seleccionada(conexion)
-            sleep(3)
-        except ValueError as error:
-            print(f'\n{error}\n\n')
-            funcion_seleccionada(conexion)
-            sleep(3)
-        descripcion_de_la_funcion_seleccionada = modulos[modulo_seleccionado]['opciones'][opcion_de_funcion_seleccionada - 1]
-        pregunta  = f'¿Desea {descripcion_de_la_funcion_seleccionada.lower()} de nuevo?'
-        opciones  = ['Sí', 'No']
-        respuesta = not bool(pick(opciones, pregunta)[1])
-        ejecutar_funcion_de_nuevo = respuesta
-        mostrar_menu(conexion)
+    opcion_de_funcion_seleccionada = pick(modulos[modulo_seleccionado]['opciones'], modulos['opciones'][modulo_seleccionado - 1])[1] + 1
+    
+    selecciono_menu_principal = opcion_de_funcion_seleccionada == len(modulos[modulo_seleccionado]['opciones'])
+    
+    if not selecciono_menu_principal:
+        funcion_seleccionada           = modulos[modulo_seleccionado][opcion_de_funcion_seleccionada] 
+        ejecutar_funcion_de_nuevo = True
+        while ejecutar_funcion_de_nuevo:
+            se_ha_completado_la_funcion_correctamente = False
+            while not se_ha_completado_la_funcion_correctamente:
+                try:
+                    funcion_seleccionada(conexion)
+                    se_ha_completado_la_funcion_correctamente = True
+                    input('\nPresione enter para continuar')
+                except ValueError as error:
+                    print(f'\n{error}\n\n')
+            descripcion_de_la_funcion_seleccionada = modulos[modulo_seleccionado]['opciones'][opcion_de_funcion_seleccionada - 1]
+            pregunta  = f'¿Desea {descripcion_de_la_funcion_seleccionada.lower()} otra vez?'
+            opciones  = ['Sí', 'No']
+            respuesta = not bool(pick(opciones, pregunta)[1])
+            limpiar_pantalla()
+            ejecutar_funcion_de_nuevo = respuesta
+    mostrar_menu(conexion)
 
 
