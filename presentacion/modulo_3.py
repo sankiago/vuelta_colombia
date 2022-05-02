@@ -14,9 +14,9 @@ def crear_etapa_user(conexion):
 
     horas, minutos = tiempo_empleado.split(':')
     if len(tiempo_empleado.split(':')) != 2 or (len(minutos) != 2):
-        raise ValueError('El tiemo ingresado no corresponde al formato (HH:MM)')
+        raise ValueError('El tiempo ingresado no corresponde al formato (HH:MM)')
     if not (horas.isdecimal() and minutos.isdecimal()):
-        raise ValueError('Solo se admiten números en el tiempo')
+        raise ValueError('Solo se admiten números en el formato (HH:MM)')
     tiempo_convertido = minutos
     minutos = horas*60
     tiempo_convertido = tiempo_convertido + minutos
@@ -32,7 +32,7 @@ def crear_etapa_user(conexion):
     if len(consultar_equipo_por_id(conexion, num_equipo)) == 0:
         raise ValueError('El equipo seleccionado no existe')
        
-    info_etapa                          = [numero_etapa, numero_inscripcion_ciclista, etapa_ciclista, posicion_etapa, tiempo_empleado, num_equipo, retirado]
+    info_etapa                          = [numero_etapa, numero_inscripcion_ciclista, etapa_ciclista, posicion_etapa, tiempo_convertido, num_equipo, retirado]
     crear_etapa(conexion, info_etapa)
     print(f'La informacion de la etapa {numero_etapa} y ciclista {numero_inscripcion_ciclista} se ha creado con éxito')
 
@@ -41,5 +41,13 @@ def actualizar_info_ciclista_user(conexion):
     num_ciclista        = input('Ingrese el número de inscripcion del ciclista : ')
     nueva_posicion      = input('Ingrese la nueva posicion del ciclista: ')
     nuevo_tiempo        = input('Ingrese el nuevo tiempo: ')
-    actualizar_info_ciclista(conexion, nueva_posicion, num_ciclista, nuevo_tiempo)
+    horas, minutos = nuevo_tiempo.split(':')
+    if len(nuevo_tiempo.split(':')) != 2 or (len(minutos) != 2):
+        raise ValueError('El tiempo ingresado no corresponde al formato (HH:MM)')
+    if not (horas.isdecimal() and minutos.isdecimal()):
+        raise ValueError('Solo se admiten números en el formato (HH:MM)')
+    tiempo_convertido = minutos
+    minutos = horas*60
+    tiempo_convertido = tiempo_convertido + minutos
+    actualizar_info_ciclista(conexion, nueva_posicion, num_ciclista, tiempo_convertido)
     print(f'El tiempo del ciclista con número de inscripción {num_ciclista} ha sido actualizado.')
