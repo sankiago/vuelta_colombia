@@ -2,6 +2,7 @@ from pick import pick
 from presentacion.modulo_1 import crear_equipo_user,   consultar_equipo_por_id_user, cambiar_sede_equipo_user
 from presentacion.modulo_2 import crear_ciclista_user, cambiar_ranking_UIC_user,     consultar_info_vigente_user
 from presentacion.modulo_3 import crear_etapa_user,    actualizar_info_ciclista_user
+from presentacion.modulo_4 import consulta_etapa_user, consulta_general_user
 import os
 from time import sleep
 
@@ -41,7 +42,9 @@ modulos = {
         2: actualizar_info_ciclista_user,
     },
     4:{
-        'opciones': ['Consultar clasificación de una etapa', 'Consultar clasificación general','Regresar al menú principal']
+        'opciones': ['Consultar clasificación de una etapa', 'Consultar clasificación general','Regresar al menú principal'],
+        1: consulta_etapa_user,
+        2: consulta_general_user, 
     }
 }
 
