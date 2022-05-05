@@ -26,6 +26,8 @@ def consulta_etapa_user(conexion):
 		minutos_total =	int(resultado[contador][6])
 		horas = minutos_total//60
 		minutos = minutos_total%60
+		if len(str(minutos)) == 1:
+			minutos = "0"+str(minutos)
 		hh_mm = f'{horas}:{minutos}'
 		resultado[contador][6] = hh_mm
 		contador +=1
@@ -58,6 +60,8 @@ def consulta_general_user(conexion):
 		minutos_total =	resultado[contador][5]
 		horas = minutos_total//60
 		minutos = minutos_total%60
+		if len(str(minutos)) == 1:
+			minutos = "0"+str(minutos)
 		hh_mm = f'{horas}:{minutos}'
 		resultado[contador][5] = hh_mm
 		contador +=1
