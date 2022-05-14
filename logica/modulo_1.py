@@ -3,7 +3,7 @@
 import smtplib, ssl
 from   email.message import EmailMessage
 import re
-from modelos import Equipo
+from modelos import Equipo, equipo
 
 def crear_equipo(conexion, equipo):
   """
@@ -28,7 +28,8 @@ def consultar_equipo_por_id(conexion, id_equipo):
   cursor             = conexion.cursor()
   sentencia_consulta = f'SELECT * FROM equipos WHERE num_equipo = {id_equipo}'
   respuesta_consulta = cursor.execute(sentencia_consulta).fetchall()
-  return respuesta_consulta
+  equipo_consultado  = Equipo(lista_de_informacion=respuesta_consulta[0])
+  return equipo_consultado
 
 def cambiar_sede_equipo(conexion, id_equipo, nuevo_pais, nueva_direccion):
   """

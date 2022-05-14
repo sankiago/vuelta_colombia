@@ -16,17 +16,18 @@ def crear_equipo_user(conexion):
     direccion_sede_central = input('dirección de la sede central: ')
     telefono               = input('número de telefono: ')
     correo_electronico     = input('dirección de correo electrónico: ')
-    equipo = Equipo(nombre, pais, director, marca_bicicleta, marca_ciclocomputador, direccion_sede_central, telefono, correo_electronico)
+
+    equipo = Equipo(nombre=nombre, pais=pais, director=director, marca_bicicleta=marca_bicicleta, marca_ciclocomputador=marca_ciclocomputador, direccion_sede_central =direccion_sede_central, telefono=telefono, correo_electronico=correo_electronico)
     crear_equipo(conexion, equipo)
     print(f'El equipo {nombre} se ha creado con éxito')
 
 def consultar_equipo_por_id_user(conexion):
     '''
-    Funcion que encuentra un equipo por el id del ciclista
+    Funcion que encuentra un equipo por el id del equipo
     Recibe el objeto conexion
     '''
     id_equipo = input('Ingrese el número del equipo: ')
-    respuesta_consulta = consultar_equipo_por_id(conexion, id_equipo)
+    resupesta_consulta = consultar_equipo_por_id(conexion, id_equipo)
     if len(respuesta_consulta) == 0:
         print(f'No se ha encontrado el equipo número {id_equipo}')
     else:
