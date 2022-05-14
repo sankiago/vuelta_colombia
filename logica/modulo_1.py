@@ -28,7 +28,11 @@ def consultar_equipo_por_id(conexion, id_equipo):
   cursor             = conexion.cursor()
   sentencia_consulta = f'SELECT * FROM equipos WHERE num_equipo = {id_equipo}'
   respuesta_consulta = cursor.execute(sentencia_consulta).fetchall()
-  equipo_consultado  = Equipo(lista_de_informacion=respuesta_consulta[0])
+  if len(respuesta_consulta) == 0:
+    equipo_consultado = []
+  else:
+    equipo_consultado  = Equipo(lista_de_informacion=respuesta_consulta[0])
+
   return equipo_consultado
 
 def cambiar_sede_equipo(conexion, id_equipo, nuevo_pais, nueva_direccion):

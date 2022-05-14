@@ -1,1 +1,1 @@
-from equipo import Equipo
+from .equipo import Equipo
