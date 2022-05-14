@@ -40,3 +40,13 @@ def consultar_info_vigente(conexion):
   respuesta_consulta = cursor.execute(sentencia_consulta).fetchall()
   return respuesta_consulta
 
+def consultar_info_vigente_ciclista(conexion, num_ciclista):
+  """
+  Función consultar informacion viegente.
+  Recibe un objeto Connection     (conexion).
+  Recibe el número de inscripción (num_ciclista).
+  """
+  cursor             = conexion.cursor()
+  sentencia_consulta = f'SELECT num_inscripcion_ciclista, num_identificacion , nombre, apellido , strftime("%d/%m/%Y",fecha_de_nacimiento,"unixepoch") , pais,   num_equipo, ranking_UIC FROM ciclistas WHERE num_inscripcion_ciclista = {num_ciclista}'
+  respuesta_consulta = cursor.execute(sentencia_consulta).fetchall()
+  return respuesta_consulta

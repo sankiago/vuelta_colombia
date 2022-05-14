@@ -1,6 +1,6 @@
 from multiprocessing.sharedctypes import Value
 from logica.modulo_1 import consultar_equipo_por_id
-from logica.modulo_2 import crear_ciclista, actualizar_ranking_UIC, consultar_info_vigente
+from logica.modulo_2 import crear_ciclista, actualizar_ranking_UIC, consultar_info_vigente,consultar_info_vigente_ciclista
 from terminaltables  import AsciiTable
 from datetime        import datetime
 
@@ -67,6 +67,20 @@ def consultar_info_vigente_user(conexion):
         
 
         encabezados_de_la_tabla = [['Número de inscripción', 'Número de identificación', 'Nombre', 'Apellido', 'Fecha de nacimiento (DD/MM/AAAA)', 'Pais de origen','Número de equipo en el que corre', 'fotografia', 'Ranking UCI']]
+        datos_de_la_tabla       = encabezados_de_la_tabla + ciclistas
+        tabla_ciclista          = AsciiTable(datos_de_la_tabla)
+        tabla_ciclista.title    = ' Consulta de información vigente '
+        print(tabla_ciclista.table)
+
+def consultar_info_vigente_ciclista_user(conexion):
+    num_ciclista = input('Ingrese el número de inscripción del ciclista a consultar: ')
+    respuesta_consulta = consultar_info_vigente_ciclista(conexion, num_ciclista)
+    if len(respuesta_consulta) == 0:
+        print(f'No se ha encontrado información')
+    else:
+        ciclistas = [list(ciclista) for ciclista in respuesta_consulta]
+        
+        encabezados_de_la_tabla = [['Número de inscripción', 'Número de identificación', 'Nombre', 'Apellido', 'Fecha de nacimiento (DD/MM/AAAA)', 'Pais de origen','Número de equipo en el que corre', 'Ranking UCI']]
         datos_de_la_tabla       = encabezados_de_la_tabla + ciclistas
         tabla_ciclista          = AsciiTable(datos_de_la_tabla)
         tabla_ciclista.title    = ' Consulta de información vigente '

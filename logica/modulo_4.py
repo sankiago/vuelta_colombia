@@ -1,7 +1,8 @@
 # Módulo 4: Consulta de clasificaciones
 #Consulta individual por etapa
 
-
+#modelo
+#DAO
 
 def consulta_etapa(conexion,etapa,orden):
 	'''

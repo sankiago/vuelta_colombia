@@ -3,34 +3,21 @@
 import smtplib, ssl
 from   email.message import EmailMessage
 import re
+from modelos import Equipo
 
 def crear_equipo(conexion, equipo):
   """
   Función creación de equipo.
-  Recibe un objeto Connection.
-  Recibe una lista de la siguiente manera:
-  [nombre, pais_sede, director, marca_bicicleta, marca_ciclocomputador, direccion_sede_central, telefono, correo_electronico]
+  Recibe un objeto Connection (conexion).
+  Recibe un objeto de la clase Equipo
   """
-  nombre_del_equipo   = equipo[0]
-  nombre_del_director = equipo[2]
-  numero_de_telefono  = equipo[6]
-  correo_del_equipo   = equipo[7] 
-
-  patron_numero_de_telefono       = r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$'
-  patron_correo_electronico       = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
-  correo_de_electronico_es_valido = not bool(re.fullmatch(patron_correo_electronico, correo_del_equipo))
-  numero_de_telefono_es_valido    = not bool(re.fullmatch(patron_numero_de_telefono, numero_de_telefono))
-  
-  if correo_de_electronico_es_valido:
-    raise ValueError(f'el número de teléfono {numero_de_telefono} no es válido')
-  if numero_de_telefono_es_valido:
-    raise ValueError(f'la dirección de correo {correo_del_equipo} no válida')
-
+  if type(equipo) != Equipo:
+    raise ValueError('No se ingreso un equipo')
   cursor              = conexion.cursor()
   sentencia_insercion = 'INSERT INTO equipos(nombre, pais_sede, director, marca_bicicleta, marca_ciclocomputador, direccion_sede_central, telefono, correo_electronico) VALUES(?,?,?,?,?,?,?,?)'
-  cursor.execute(sentencia_insercion, equipo)
+  cursor.execute(sentencia_insercion, equipo.convertir_a_lista())
   conexion.commit()
-  enviar_correo_verificacion(director=nombre_del_director, equipo=nombre_del_equipo, correo=correo_del_equipo)
+  enviar_correo_verificacion(director=equipo.director, equipo=equipo.nombre, correo=equipo.correo_electronico)
 
 def consultar_equipo_por_id(conexion, id_equipo):
   """
@@ -57,6 +44,8 @@ def cambiar_sede_equipo(conexion, id_equipo, nuevo_pais, nueva_direccion):
 
 import smtplib, ssl
 from email.message import EmailMessage
+
+
 
 def enviar_correo_verificacion(**destinatario):
   """

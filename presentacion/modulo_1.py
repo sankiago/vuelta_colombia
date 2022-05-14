@@ -1,10 +1,12 @@
 from logica.modulo_1 import crear_equipo, consultar_equipo_por_id, cambiar_sede_equipo
-from terminaltables import AsciiTable
+from modelos         import Equipo
+from terminaltables  import AsciiTable
 
 def crear_equipo_user(conexion):
-    '''Funcion que crea el equipo
-    Recibe el ojeto conexion
-    Devuelve una lista [nombre, pais, director, marca_bicicleta, marca_ciclocomputador, direccion_sede_central, telefono, correo_electronico] '''
+    '''
+    Funcion que crea el equipo
+    Recibe un ojeto conexion
+    '''
     print('Ingrese los datos del nuevo equipo.')
     nombre                 = input('nombre: ')
     pais                   = input('pais: ')
@@ -14,7 +16,7 @@ def crear_equipo_user(conexion):
     direccion_sede_central = input('dirección de la sede central: ')
     telefono               = input('número de telefono: ')
     correo_electronico     = input('dirección de correo electrónico: ')
-    equipo = [nombre, pais, director, marca_bicicleta, marca_ciclocomputador, direccion_sede_central, telefono, correo_electronico]
+    equipo = Equipo(nombre, pais, director, marca_bicicleta, marca_ciclocomputador, direccion_sede_central, telefono, correo_electronico)
     crear_equipo(conexion, equipo)
     print(f'El equipo {nombre} se ha creado con éxito')
 

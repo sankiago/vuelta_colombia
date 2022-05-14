@@ -1,5 +1,4 @@
 from logica.modulo_3 import crear_etapa, actualizar_info_ciclista
-from terminaltables import AsciiTable
 from logica.modulo_1 import consultar_equipo_por_id
 
 
