@@ -71,7 +71,7 @@ class EquipoDAO:
       sentencia_consulta = f'SELECT * FROM equipos WHERE num_equipo = {id_equipo}'
       respuesta_consulta = cursor.execute(sentencia_consulta).fetchall()
       if len(respuesta_consulta) == 0:
-        equipo_consultado = []
+        equipo_consultado = None
       else:
         equipo_consultado  = Equipo(lista_de_informacion=respuesta_consulta[0])
 

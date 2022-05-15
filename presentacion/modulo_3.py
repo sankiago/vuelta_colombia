@@ -1,5 +1,5 @@
 from logica.modulo_3 import crear_etapa, actualizar_info_ciclista
-from logica.modulo_1 import consultar_equipo_por_id
+from logica import EquipoDAO
 from modelos.etapa import Etapa
 
 def crear_etapa_user(conexion):
@@ -30,15 +30,15 @@ def crear_etapa_user(conexion):
 
     if  esta_retirado.upper()   == "Y" or esta_retirado.upper() == "YES":
         #Se evalua si el ciclista esta retirado o no
-        retirado = 'Si'
+        esta_retirado = 'Si'
     elif esta_retirado.upper()  == 'N' or esta_retirado.upper() == 'NO':
-        retirado = 'No'
+        esta_retirado = 'No'
 
-    if len(EquipoDAO.consultar_equipo_por_id(conexion, num_equipo)) == 0:
+    if EquipoDAO.consultar_equipo_por_id(conexion, num_equipo) == None:
         #Evalua si el equipo al que se accede existe o no
         raise ValueError('El equipo seleccionado no existe')
        
-    etapa                         = Etapa(numero_etapa=numero_etapa, numero_inscripcion_ciclista=numero_inscripcion_ciclista, etapa_ciclista=etapa_ciclista, posicion_etapa=posicion_etapa, tiempo_convertido=tiempo_convertido, num_equipo=num_equipo, retirado=retirado)
+    etapa                         = Etapa(numero_etapa=numero_etapa, numero_inscripcion_ciclista=numero_inscripcion_ciclista, etapa_ciclista=etapa_ciclista, posicion_etapa=posicion_etapa, tiempo_empleado=tiempo_empleado, num_equipo=num_equipo, esta_retirado=esta_retirado)
     crear_etapa(conexion, etapa)
     print(f'La informacion de la etapa {numero_etapa} y ciclista {numero_inscripcion_ciclista} se ha creado con éxito')
 

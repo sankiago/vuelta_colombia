@@ -66,12 +66,13 @@ def mostrar_menu(conexion):
         while ejecutar_funcion_de_nuevo:
             se_ha_completado_la_funcion_correctamente = False
             while not se_ha_completado_la_funcion_correctamente:
-                try:
+                '''try:
                     funcion_seleccionada(conexion)
                     se_ha_completado_la_funcion_correctamente = True
                     input('\nPresione enter para continuar')
                 except ValueError as error:
-                    print(f'\n{error}\n\n')
+                    print(f'\n{error}\n\n')'''
+
             descripcion_de_la_funcion_seleccionada = modulos[modulo_seleccionado]['opciones'][opcion_de_funcion_seleccionada - 1]
             pregunta  = f'¿Desea {descripcion_de_la_funcion_seleccionada.lower()} otra vez?'
             opciones  = ['Sí', 'No']

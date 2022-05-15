@@ -7,7 +7,7 @@ import re
 
 
 
-def crear_etapa(self, conexion, info_etapa):
+def crear_etapa(conexion, info_etapa):
   """
   Función creación ciclista.
   Recibe un objeto Connection.

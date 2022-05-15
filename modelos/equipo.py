@@ -3,7 +3,7 @@ import re
 class Equipo():
     def __init__(self, lista_de_informacion=None, nombre=None, pais=None, director=None, marca_bicicleta=None, marca_ciclocomputador=None, direccion_sede_central=None, telefono=None, correo_electronico=None, num_equipo=None):
         if lista_de_informacion != None:
-            self.nombre, self.pais, self.director, self.marca_bicicleta, self.marca_ciclocomputador, self.direccion_sede_central, self.telefono, self.correo_electronico = lista_de_informacion
+            self.num_equipo, self.nombre, self.pais, self.director, self.marca_bicicleta, self.marca_ciclocomputador, self.direccion_sede_central, self.telefono, self.correo_electronico = lista_de_informacion
 
         else:
             self.num_equipo             = num_equipo
@@ -35,3 +35,4 @@ class Equipo():
                         self.marca_ciclocomputador, self.direccion_sede_central, self.telefono, self.correo_electronico]
         if self.num_equipo != None:
             lista_equipo.insert(0,self.num_equipo)
+        return lista_equipo

@@ -12,16 +12,16 @@ class Etapa():
             self.posicion_etapa                      = posicion_etapa
             #Llave Primaria artificial
             self.etapa_ciclista                      = str(numero_etapa) + '-' + str(numero_inscripcion_ciclista)
-            self.tiempo_empleado                     = tiempo_empleado
+            #self.tiempo_empleado                     = tiempo_empleado
 
             horas, minutos = tiempo_empleado.split(':')
             if len(tiempo_empleado.split(':')) != 2 or (len(minutos) != 2):
                 raise ValueError('El tiempo ingresado no corresponde al formato (HH:MM)')
             if not (horas.isdecimal() and minutos.isdecimal()):
                 raise ValueError('Solo se admiten números en el formato (HH:MM)')
-            self.esta_retiradotiempo_convertido = int(minutos)
-            minutos = int(horas)*60
-            self.tiempo_convertido = self.tiempo_convertido + minutos
+            #self.tiempo_convertido = int(minutos)
+            horas_en_minutos = int(horas)*60
+            self.tiempo_convertido = horas_en_minutos + int(minutos)
 
             self.num_equipo                     = num_equipo
             self.esta_retirado                  = esta_retirado
