@@ -1,9 +1,8 @@
-import imp
-from logica.modulo_1 import consultar_equipo_por_id
-import re
+
 
 class Etapa():
     def __init__(self, lista_de_informacion=None, num_equipo=None, numero_etapa= None, numero_inscripcion_ciclista=None, posicion_etapa=None, etapa_ciclista=None, tiempo_empleado=None, esta_retirado=None):
+        
         if lista_de_informacion != None:
                 self.numero_etapa, self.numero_inscripcion_ciclista, self.posicion_etapa, self.etapa_ciclista, self.tiempo_empleado, self.tiempo_convertido = lista_de_informacion
         else:

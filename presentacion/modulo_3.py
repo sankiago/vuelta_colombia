@@ -1,8 +1,7 @@
 from logica.modulo_3 import crear_etapa, actualizar_info_ciclista
 from logica.modulo_1 import consultar_equipo_por_id
-from modelos         import Etapa
+from modelos.etapa import Etapa
 
-from modelos         import Equipo
 def crear_etapa_user(conexion):
     '''
     Funcion crear etapa
