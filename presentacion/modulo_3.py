@@ -1,7 +1,8 @@
 from logica.modulo_3 import crear_etapa, actualizar_info_ciclista
 from logica.modulo_1 import consultar_equipo_por_id
+from modelos         import Etapa
 
-
+from modelos         import Equipo
 def crear_etapa_user(conexion):
     '''
     Funcion crear etapa
@@ -38,8 +39,8 @@ def crear_etapa_user(conexion):
         #Evalua si el equipo al que se accede existe o no
         raise ValueError('El equipo seleccionado no existe')
        
-    info_etapa                          = [numero_etapa, numero_inscripcion_ciclista, etapa_ciclista, posicion_etapa, tiempo_convertido, num_equipo, retirado]
-    crear_etapa(conexion, info_etapa)
+    etapa                         = Etapa(numero_etapa=numero_etapa, numero_inscripcion_ciclista=numero_inscripcion_ciclista, etapa_ciclista=etapa_ciclista, posicion_etapa=posicion_etapa, tiempo_convertido=tiempo_convertido, num_equipo=num_equipo, retirado=retirado)
+    crear_etapa(conexion, etapa)
     print(f'La informacion de la etapa {numero_etapa} y ciclista {numero_inscripcion_ciclista} se ha creado con éxito')
 
 
