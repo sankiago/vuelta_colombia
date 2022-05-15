@@ -15,16 +15,6 @@ def crear_etapa_user(conexion):
     #Llave Primaria artificial
     etapa_ciclista                      = str(numero_etapa) + '-' + str(numero_inscripcion_ciclista)
     tiempo_empleado                     = input('Tiempo Empleado (HH:MM): ')
-
-    '''horas, minutos = tiempo_empleado.split(':')
-    if len(tiempo_empleado.split(':')) != 2 or (len(minutos) != 2):
-        raise ValueError('El tiempo ingresado no corresponde al formato (HH:MM)')
-    if not (horas.isdecimal() and minutos.isdecimal()):
-        raise ValueError('Solo se admiten números en el formato (HH:MM)')'''
-    '''tiempo_convertido = int(minutos)
-    minutos = int(horas)*60
-    tiempo_convertido = tiempo_convertido + minutos'''
-
     num_equipo                          = input('Número de equipo en el que corre: ')
     esta_retirado                       = input('¿El ciclista se retiro? Y/N: ')
 
