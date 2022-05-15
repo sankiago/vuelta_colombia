@@ -34,7 +34,7 @@ def crear_etapa_user(conexion):
     elif esta_retirado.upper()  == 'N' or esta_retirado.upper() == 'NO':
         retirado = 'No'
 
-    if len(consultar_equipo_por_id(conexion, num_equipo)) == 0:
+    if len(EquipoDAO.consultar_equipo_por_id(conexion, num_equipo)) == 0:
         #Evalua si el equipo al que se accede existe o no
         raise ValueError('El equipo seleccionado no existe')
        

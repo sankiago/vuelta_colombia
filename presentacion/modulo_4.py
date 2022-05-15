@@ -1,6 +1,9 @@
 from terminaltables import AsciiTable
-from logica.modulo_4 import consulta_etapa,consulta_general
+from logica import Resultado_DAO 
+
 from pick import pick
+
+from modelos.resultado import Resultado
 
 def consulta_etapa_user(conexion):
 	etapa = input('Ingrese la etapa a consultar:	')
@@ -16,24 +19,11 @@ def consulta_etapa_user(conexion):
 	orden = pick(opciones,'¿De acuerdo a qué parámetro debería estar ordedenada la consulta?')[0]
 	parametro_seleccionado = campo_SQL[orden]
 
-	consulta = consulta_etapa(conexion,etapa,parametro_seleccionado)
-	contador = 0
-	resultado = [list(tupla) for tupla in consulta]
-
-
-	contador = 0	
-	while contador < len(resultado):
-		minutos_total =	int(resultado[contador][6])
-		horas = minutos_total//60
-		minutos = minutos_total%60
-		if len(str(minutos)) == 1:
-			minutos = "0"+str(minutos)
-		hh_mm = f'{horas}:{minutos}'
-		resultado[contador][6] = hh_mm
-		contador +=1
+	etapa = Resultado_DAO.consulta_etapa(conexion,etapa,parametro_seleccionado)
+	cuerpo_de_la_tabla = [resultado.convertir_a_lista() for resultado in etapa]
 
 	encabezados_de_la_tabla = [['Etapa', 'Número de ID de Ciclista', 'Nombre', 'Apellido', 'Pais de origen','Nombre del Equipo en el que corre', 'Tiempo Empleado (HH:MM)']]
-	datos_de_la_tabla = encabezados_de_la_tabla + resultado
+	datos_de_la_tabla = encabezados_de_la_tabla + cuerpo_de_la_tabla
 	tabla_ciclista = AsciiTable(datos_de_la_tabla)
 	tabla_ciclista.title= 'Consulta de información de Etapa'
 	print(tabla_ciclista.table)
@@ -51,23 +41,11 @@ def consulta_general_user(conexion):
 	orden = pick(opciones,'¿De acuerdo a qué parámetro debería estar ordedenada la consulta?')[0]
 	parametro_seleccionado = campo_SQL[orden]
 
-	consulta = consulta_general(conexion,parametro_seleccionado)
-	contador = 0
-	resultado = [list(tupla) for tupla in consulta]
-
-	contador = 0	
-	while contador < len(resultado):
-		minutos_total =	resultado[contador][5]
-		horas = minutos_total//60
-		minutos = minutos_total%60
-		if len(str(minutos)) == 1:
-			minutos = "0"+str(minutos)
-		hh_mm = f'{horas}:{minutos}'
-		resultado[contador][5] = hh_mm
-		contador +=1
+	clasificacion_general = Resultado_DAO.consulta_general(conexion,parametro_seleccionado)
+	cuerpo_de_la_tabla = [resultado.convertir_a_lista() for resultado in clasificacion_general]
 
 	encabezados_de_la_tabla = [['Número de ID de Ciclista', 'Nombre', 'Apellido', 'Pais de origen','Nombre del Equipo en el que corre', 'Tiempo Empleado (HH:MM)']]
-	datos_de_la_tabla = encabezados_de_la_tabla + resultado
+	datos_de_la_tabla = encabezados_de_la_tabla + cuerpo_de_la_tabla
 	tabla_ciclista = AsciiTable(datos_de_la_tabla)
 	tabla_ciclista.title= 'Consulta de información de Clasificación General'
 	print(tabla_ciclista.table)

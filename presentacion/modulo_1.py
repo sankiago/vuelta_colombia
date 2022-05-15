@@ -1,4 +1,4 @@
-from logica.modulo_1 import crear_equipo, consultar_equipo_por_id, cambiar_sede_equipo
+from logica          import EquipoDAO
 from modelos         import Equipo
 from terminaltables  import AsciiTable
 
@@ -18,7 +18,7 @@ def crear_equipo_user(conexion):
     correo_electronico     = input('dirección de correo electrónico: ')
 
     equipo = Equipo(nombre=nombre, pais=pais, director=director, marca_bicicleta=marca_bicicleta, marca_ciclocomputador=marca_ciclocomputador, direccion_sede_central =direccion_sede_central, telefono=telefono, correo_electronico=correo_electronico)
-    crear_equipo(conexion, equipo)
+    EquipoDAO.crear_equipo(conexion, equipo)
     print(f'El equipo {nombre} se ha creado con éxito')
 
 def consultar_equipo_por_id_user(conexion):
@@ -27,7 +27,7 @@ def consultar_equipo_por_id_user(conexion):
     Recibe el objeto conexion
     '''
     id_equipo          = input('Ingrese el número del equipo: ')
-    equipo = consultar_equipo_por_id(conexion, id_equipo)
+    equipo = EquipoDAO.consultar_equipo_por_id(conexion, id_equipo)
     if equipo == None:
         print(f'No se ha encontrado el equipo número {id_equipo}')
     else:
@@ -46,5 +46,5 @@ def cambiar_sede_equipo_user(conexion):
     id_equipo       = input('Ingrese el número del equipo: ')
     nuevo_pais      = input('Ingrese el nuevo país de sede: ')
     nueva_direccion = input('Ingrese el la dirección de la nueva sede del equipo: ')
-    cambiar_sede_equipo(conexion,id_equipo, nuevo_pais, nueva_direccion)
+    EquipoDAO.cambiar_sede_equipo(conexion,id_equipo, nuevo_pais, nueva_direccion)
     print(f'La información de la sede del equipo {id_equipo} ha sido modificada.')
