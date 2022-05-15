@@ -1,4 +1,4 @@
-from logica.modulo_3 import crear_etapa, actualizar_info_ciclista
+from logica.modulo_3 import EtapaDAO
 from logica import EquipoDAO
 from modelos.etapa import Etapa
 
@@ -29,7 +29,7 @@ def crear_etapa_user(conexion):
         raise ValueError('El equipo seleccionado no existe')
        
     etapa                         = Etapa(numero_etapa=numero_etapa, numero_inscripcion_ciclista=numero_inscripcion_ciclista, etapa_ciclista=etapa_ciclista, posicion_etapa=posicion_etapa, tiempo_empleado=tiempo_empleado, num_equipo=num_equipo, esta_retirado=esta_retirado)
-    crear_etapa(conexion, etapa)
+    EtapaDAO.crear_etapa(conexion, etapa)
     print(f'La informacion de la etapa {numero_etapa} y ciclista {numero_inscripcion_ciclista} se ha creado con éxito')
 
 
