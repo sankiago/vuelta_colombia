@@ -1,5 +1,5 @@
 from logica.modulo_3 import crear_etapa, actualizar_info_ciclista
-from logica.modulo_1 import consultar_equipo_por_id
+from logica          import EquipoDAO
 
 
 def crear_etapa_user(conexion):
@@ -34,7 +34,7 @@ def crear_etapa_user(conexion):
     elif esta_retirado.upper()  == 'N' or esta_retirado.upper() == 'NO':
         retirado = 'No'
 
-    if len(consultar_equipo_por_id(conexion, num_equipo)) == 0:
+    if len(EquipoDAO.consultar_equipo_por_id(conexion, num_equipo)) == 0:
         #Evalua si el equipo al que se accede existe o no
         raise ValueError('El equipo seleccionado no existe')
        

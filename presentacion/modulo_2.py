@@ -1,5 +1,5 @@
 from multiprocessing.sharedctypes import Value
-from logica.modulo_1 import consultar_equipo_por_id
+from logica          import EquipoDAO
 from logica.modulo_2 import crear_ciclista, actualizar_ranking_UIC, consultar_info_vigente,consultar_info_vigente_ciclista
 from terminaltables  import AsciiTable
 from datetime        import datetime
@@ -32,7 +32,7 @@ def crear_ciclista_user(conexion):
     pais                   = input('Pais de origen: ')
     num_equipo             = input('Número de equipo en el que corre: ')
     #Validando si el equipo existe
-    if len(consultar_equipo_por_id(conexion, num_equipo)) == 0:
+    if len(EquipoDAO.consultar_equipo_por_id(conexion, num_equipo)) == 0:
         raise ValueError('El equipo seleccionado no existe')
 
     #sin implementar: fotografia             = input('Fotografía: ')
