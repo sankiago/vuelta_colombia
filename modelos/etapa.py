@@ -1,18 +1,17 @@
 
 
 class Etapa():
-    def __init__(self, lista_de_informacion=None, num_equipo=None, numero_etapa= None, numero_inscripcion_ciclista=None, posicion_etapa=None, etapa_ciclista=None, tiempo_empleado=None, esta_retirado=None):
+    def __init__(self, lista_de_informacion=None, num_equipo=None, numero_etapa= None, numero_inscripcion_ciclista=None, posicion_etapa=None, tiempo_empleado=None, esta_retirado=None):
         
         if lista_de_informacion != None:
                 self.numero_etapa, self.numero_inscripcion_ciclista, self.posicion_etapa, self.etapa_ciclista, self.tiempo_empleado, self.tiempo_convertido = lista_de_informacion
         else:
             print('Ingrese los datos del ciclista:')
-            self.numero_etapa                        = numero_etapa
-            self.numero_inscripcion_ciclista         = numero_inscripcion_ciclista
-            self.posicion_etapa                      = posicion_etapa
+            self.numero_etapa                   = numero_etapa
+            self.numero_inscripcion_ciclista    = numero_inscripcion_ciclista
+            self.posicion_etapa                 = posicion_etapa
             #Llave Primaria artificial
-            self.etapa_ciclista                      = str(numero_etapa) + '-' + str(numero_inscripcion_ciclista)
-            #self.tiempo_empleado                     = tiempo_empleado
+            self.etapa_ciclista                 = str(numero_etapa) + '-' + str(numero_inscripcion_ciclista)
 
             horas, minutos = tiempo_empleado.split(':')
             if len(tiempo_empleado.split(':')) != 2 or (len(minutos) != 2):
