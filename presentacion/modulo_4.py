@@ -3,7 +3,7 @@ from logica import Resultado_DAO
 
 from pick import pick
 
-from modelos.resultado_etapa import Resultado
+from modelos.resultado import Resultado
 
 def consulta_etapa_user(conexion):
 	etapa = input('Ingrese la etapa a consultar:	')

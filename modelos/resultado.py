@@ -1,5 +1,3 @@
-from operator import index
-
 
 class Resultado:
 	def __init__(self, tupla_de_informacion):
