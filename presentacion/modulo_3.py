@@ -13,7 +13,7 @@ def crear_etapa_user(conexion):
     numero_inscripcion_ciclista         = input('Numero de inscripcion del ciclista: ')
     posicion_etapa                      = input('Posicion en la etapa: ')
     #Llave Primaria artificial
-    etapa_ciclista                      = str(numero_etapa) + '-' + str(numero_inscripcion_ciclista)
+    
     tiempo_empleado                     = input('Tiempo Empleado (HH:MM): ')
     num_equipo                          = input('Número de equipo en el que corre: ')
     esta_retirado                       = input('¿El ciclista se retiro? Y/N: ')
@@ -28,7 +28,7 @@ def crear_etapa_user(conexion):
         #Evalua si el equipo al que se accede existe o no
         raise ValueError('El equipo seleccionado no existe')
        
-    etapa                         = Etapa(numero_etapa=numero_etapa, numero_inscripcion_ciclista=numero_inscripcion_ciclista, etapa_ciclista=etapa_ciclista, posicion_etapa=posicion_etapa, tiempo_empleado=tiempo_empleado, num_equipo=num_equipo, esta_retirado=esta_retirado)
+    etapa                         = Etapa(numero_etapa=numero_etapa, numero_inscripcion_ciclista=numero_inscripcion_ciclista, posicion_etapa=posicion_etapa, tiempo_empleado=tiempo_empleado, num_equipo=num_equipo, esta_retirado=esta_retirado)
     EtapaDAO.crear_etapa(conexion, etapa)
     print(f'La informacion de la etapa {numero_etapa} y ciclista {numero_inscripcion_ciclista} se ha creado con éxito')
 
@@ -52,5 +52,5 @@ def actualizar_info_ciclista_user(conexion):
     tiempo_convertido = int(minutos)
     minutos = int(horas)*60
     tiempo_convertido = tiempo_convertido + minutos
-    actualizar_info_ciclista(conexion, nueva_posicion, num_ciclista, tiempo_convertido)
+    EtapaDAO.actualizar_info_ciclista(conexion, nueva_posicion, num_ciclista, tiempo_convertido)
     print(f'El tiempo del ciclista con número de inscripción {num_ciclista} ha sido actualizado.')

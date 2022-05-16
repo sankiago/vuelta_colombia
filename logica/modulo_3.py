@@ -5,7 +5,7 @@ from multiprocessing.sharedctypes import Value
 
 class EtapaDAO:
   @staticmethod
-  def crear_etapa(conexion, info_etapa):
+  def crear_etapa(conexion, etapa):
     """
     Función creación ciclista.
     Recibe un objeto Connection.
@@ -15,7 +15,7 @@ class EtapaDAO:
 
     cursor              = conexion.cursor()
     sentencia_insercion = 'INSERT INTO clasificacion(num_etapa, num_ciclista, num_etapa_num_ciclista, posicion_etapa , tiempo_empleado ,num_equipo , esta_retirado ) VALUES(?,?,?,?,?,?,?)'
-    cursor.execute(sentencia_insercion, info_etapa)
+    cursor.execute(sentencia_insercion, etapa.convertir_a_lista())
     conexion.commit()
 
   @staticmethod
