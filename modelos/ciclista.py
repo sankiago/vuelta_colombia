@@ -1,12 +1,11 @@
 #Modelos 
 #ciclista.py
 import re
-from   logica import EquipoDAO
 
 class Ciclista():
-  def __init__(self, lista_de_informacion=None, num_identificacion=None, nombre=None, apellido=None, fecha_nacimiento=None, pais=None, num_equipo=None, ranking_UIC=None):
+  def __init__(self, lista_de_informacion=None, num_identificacion=None, nombre=None, apellido=None, fecha_nacimiento=None, pais=None, num_equipo=None, ranking_UCI=None):
     if lista_de_informacion != None:
-        self.num_identificacion , self.nombre , self.apellido , self.fecha_nacimiento = lista_de_informacion
+        self.num_inscripcion, self.num_identificacion, self.nombre, self.apellido, self.fecha_nacimiento_formateada, self.pais, self.num_equipo, self.ranking_UCI = lista_de_informacion
     else:
         self.num_identificacion = num_identificacion
         self.nombre             = nombre
@@ -14,7 +13,7 @@ class Ciclista():
         self.fecha_nacimiento   = fecha_nacimiento
         self.pais               = pais
         self.num_equipo         = num_equipo
-        self.ranking_UCI         = ranking_UIC
+        self.ranking_UCI         = ranking_UCI
         #sin implementar: fotografia = input('Fotografía: ')
 
         dia, mes, anio = fecha_nacimiento.split('/')
@@ -26,18 +25,17 @@ class Ciclista():
             raise ValueError('Se ha ingresado un mes no válido')
         if not (dia.isdecimal() and mes.isdecimal() and anio.isdecimal()):
             raise ValueError('Solo se admiten números en la fecha')
-    
-        #Validando si el equipo existe
-        if len(EquipoDAO.consultar_equipo_por_id(conexion, num_equipo)) == 0:
-            raise ValueError('El equipo seleccionado no existe')
-      
+        
         #convertir fecha a timestamp  
         self.fecha_nacimiento_formateada = f'{anio}-{mes}-{dia}'
-        print(f'El ciclista {self.nombre} se ha creado con exito')
+        # print(f'El ciclista {self.nombre} se ha creado con exito')
 
   def convertir_a_lista(self):
-    lista_ciclista = [self.num_identificacion , self.nombre , self.apellido , self.fecha_nacimiento]
+    #num_inscripcion_ciclista, num_identificacion , nombre, apellido , strftime("%d/%m/%Y",fecha_de_nacimiento,"unixepoch") , pais,   num_equipo, ranking_UCI
+    
+    lista_ciclista = [self.num_identificacion, self.nombre, self.apellido, self.fecha_nacimiento_formateada, self.pais, self.num_equipo, self.ranking_UCI]
 
-    if self.num_identificacion != None:
-      lista_ciclista.insert(0,self.num_identifiacion)
+    if self.num_inscripcion != None:
+      lista_ciclista.insert(0, self.num_inscripcion)
+    return lista_ciclista
   

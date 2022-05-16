@@ -3,7 +3,7 @@
 import smtplib, ssl
 from   email.message import EmailMessage
 import re
-from modelos import Equipo, equipo
+from modelos import Equipo
 
 class EquipoDAO:
     @staticmethod

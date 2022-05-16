@@ -31,7 +31,7 @@ modulos = {
         3 : cambiar_sede_equipo_user,
     },
     2:{
-        'opciones': ['Crear nuevo ciclista', 'Actualizar ranking UIC de un ciclista', 'Ver ciclistas', 'Consultar ciclista' ,'Regresar al menú principal'],
+        'opciones': ['Crear nuevo ciclista', 'Actualizar ranking UIC de un ciclista', 'Ver todos los ciclistas', 'Consultar un ciclista' ,'Regresar al menú principal'],
         1 : crear_ciclista_user,
         2 : cambiar_ranking_UIC_user,
         3 : consultar_info_vigente_user,
@@ -66,13 +66,13 @@ def mostrar_menu(conexion):
         while ejecutar_funcion_de_nuevo:
             se_ha_completado_la_funcion_correctamente = False
             while not se_ha_completado_la_funcion_correctamente:
-                '''try:
+                try:
                     funcion_seleccionada(conexion)
                     se_ha_completado_la_funcion_correctamente = True
                     input('\nPresione enter para continuar')
                 except ValueError as error:
-                    print(f'\n{error}\n\n')'''
-                funcion_seleccionada(conexion)
+                    print(f'\n{error}\n\n')
+                # funcion_seleccionada(conexion)
 
             descripcion_de_la_funcion_seleccionada = modulos[modulo_seleccionado]['opciones'][opcion_de_funcion_seleccionada - 1]
             pregunta  = f'¿Desea {descripcion_de_la_funcion_seleccionada.lower()} otra vez?'
