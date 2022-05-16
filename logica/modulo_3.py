@@ -2,9 +2,6 @@
 #Gestion de informacion de etapas e informacion por ciclista en la etapa
 
 from multiprocessing.sharedctypes import Value
-import smtplib, ssl
-import re
-
 
 class EtapaDAO:
   @staticmethod

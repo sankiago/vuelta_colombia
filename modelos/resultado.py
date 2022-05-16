@@ -1,4 +1,3 @@
-
 class Resultado:
 	def __init__(self, tupla_de_informacion):
 		if len(tupla_de_informacion) == 7:

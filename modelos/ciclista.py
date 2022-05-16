@@ -12,8 +12,10 @@ class Ciclista():
         self.nombre             = nombre
         self.apellido           = apellido
         self.fecha_nacimiento   = fecha_nacimiento
-        self.pais                   = pais
-        self.num_equipo             = num_equipo
+        self.pais               = pais
+        self.num_equipo         = num_equipo
+        self.ranking_UCI         = ranking_UIC
+        #sin implementar: fotografia = input('Fotografía: ')
 
         dia, mes, anio = fecha_nacimiento.split('/')
         if len(fecha_nacimiento.split('/')) != 3 or (len(dia) != 2 or len(mes) != 2 or len(anio) != 4):
@@ -28,10 +30,7 @@ class Ciclista():
         #Validando si el equipo existe
         if len(EquipoDAO.consultar_equipo_por_id(conexion, num_equipo)) == 0:
             raise ValueError('El equipo seleccionado no existe')
-
-        #sin implementar: fotografia             = input('Fotografía: ')
-        self.ranking_UCI           = ranking_UCI
-        
+      
         #convertir fecha a timestamp  
         self.fecha_nacimiento_formateada = f'{anio}-{mes}-{dia}'
         print(f'El ciclista {self.nombre} se ha creado con exito')

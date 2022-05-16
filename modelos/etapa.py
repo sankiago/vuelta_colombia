@@ -1,5 +1,3 @@
-
-
 class Etapa():
     def __init__(self, lista_de_informacion=None, num_equipo=None, numero_etapa= None, numero_inscripcion_ciclista=None, posicion_etapa=None, tiempo_empleado=None, esta_retirado=None):
         
