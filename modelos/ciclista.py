@@ -1,8 +1,9 @@
 #Modelos 
 #ciclista.py
 import re
+from modelos.modelo import Modelo
 
-class Ciclista():
+class Ciclista(Modelo):
   def __init__(self, lista_de_informacion=None, num_identificacion=None, nombre=None, apellido=None, fecha_nacimiento=None, pais=None, num_equipo=None, ranking_UCI=None):
     if lista_de_informacion != None:
         self.num_inscripcion, self.num_identificacion, self.nombre, self.apellido, self.fecha_nacimiento_formateada, self.pais, self.num_equipo, self.ranking_UCI = lista_de_informacion

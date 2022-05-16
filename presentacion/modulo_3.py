@@ -12,8 +12,6 @@ def crear_etapa_user(conexion):
     numero_etapa                        = input('Numero de la etapa: ')
     numero_inscripcion_ciclista         = input('Numero de inscripcion del ciclista: ')
     posicion_etapa                      = input('Posicion en la etapa: ')
-    #Llave Primaria artificial
-    
     tiempo_empleado                     = input('Tiempo Empleado (HH:MM): ')
     num_equipo                          = input('Número de equipo en el que corre: ')
     esta_retirado                       = input('¿El ciclista se retiro? Y/N: ')

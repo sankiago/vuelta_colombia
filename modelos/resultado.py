@@ -1,4 +1,6 @@
-class Resultado:
+from modelos.modelo import Modelo
+
+class Resultado(Modelo):
 	def __init__(self, tupla_de_informacion):
 		if len(tupla_de_informacion) == 7:
 			self.num_etapa, self.num_inscripcion_ciclista, self.nombre_ciclista, self.apellido, self.pais, self.nombre_equipo, tiempo_empleado = tupla_de_informacion

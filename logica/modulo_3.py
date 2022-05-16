@@ -2,6 +2,7 @@
 #Gestion de informacion de etapas e informacion por ciclista en la etapa
 
 from multiprocessing.sharedctypes import Value
+from sqlite3 import IntegrityError
 
 class EtapaDAO:
   @staticmethod
@@ -15,7 +16,10 @@ class EtapaDAO:
 
     cursor              = conexion.cursor()
     sentencia_insercion = 'INSERT INTO clasificacion(num_etapa, num_ciclista, num_etapa_num_ciclista, posicion_etapa , tiempo_empleado ,num_equipo , esta_retirado ) VALUES(?,?,?,?,?,?,?)'
-    cursor.execute(sentencia_insercion, etapa.convertir_a_lista())
+    try:
+      cursor.execute(sentencia_insercion, etapa.convertir_a_lista())
+    except IntegrityError as error:
+      raise ValueError(error)
     conexion.commit()
 
   @staticmethod
