@@ -36,7 +36,8 @@ class Ciclista(Modelo):
     
     lista_ciclista = [self.num_identificacion, self.nombre, self.apellido, self.fecha_nacimiento_formateada, self.pais, self.num_equipo, self.ranking_UCI]
 
-    if self.num_inscripcion != None:
+    if hasattr(self, 'num_inscripcion'):
       lista_ciclista.insert(0, self.num_inscripcion)
+    
     return lista_ciclista
   
