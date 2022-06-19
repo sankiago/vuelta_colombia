@@ -21,6 +21,13 @@ def barra_de_busqueda_general_ciclistas(sentencia_de_busqueda):
     print(f'Se realizó la búsqueda: "{sentencia_de_busqueda}"')
     return ciclistas_como_diccionarios
 
+@eel.expose
+def consultar_ciclista(numero_de_ciclista):
+    ciclista = CiclistaDAO.consultar_info_vigente_ciclista(conexion, numero_de_ciclista)
+    ciclistas_como_diccionarios = vars(ciclista)
+    print(f'Se consultó al ciclista {numero_de_ciclista}')
+    return ciclistas_como_diccionarios
+
 #Inicializar conexión js/python
 eel.init('client')
 eel.start('home.html')

@@ -30,13 +30,49 @@ const renderizar_ciclistas = (ciclistas) => {
     tarjetaCiclista.appendChild(cajaSuperior);
     tarjetaCiclista.appendChild(cajaInferior);
 
-    tarjetaCiclista.addEventListener('click', function(event){
-        console.log(event)
-        console.log(this)
-    })
+    tarjetaCiclista.addEventListener("click", async function () {
+      let numeroDeCiclista = this.querySelector(
+        ".numeroDeInscripcion"
+      ).textContent;
+      ciclista = await eel.consultar_ciclista(numeroDeCiclista)();
+      renderizar_detalles(ciclista);
+    });
 
     rejillaCilcistas.appendChild(tarjetaCiclista);
   });
+};
+
+const renderizar_detalles = ({
+  apellido,
+  fecha_nacimiento_formateada,
+  fotografia,
+  nombre,
+  num_equipo,
+  num_identificacion,
+  num_inscripcion,
+  pais,
+  ranking_UCI,
+}) => {
+  if (!fotografia) fotografia = "../img/foto_de_perfil.png";
+  const fotografiaNodo = document.querySelector(".fotografia");
+  const numeroDeInscripcionNodo = document.querySelector(
+    ".columna1 .numeroDeInscripcion"
+  ).childNodes[1];
+  const nombreNodo = document.querySelector(".columna2 .nombre").childNodes[1];
+  const numeroDeIdentificacionNodo = document.querySelector(
+    "#numeroDeIdentificacion"
+  ).childNodes[1];
+  const fechaDeNacimientoNodo =
+    document.querySelector("#fechaDeNacimiento").childNodes[1];
+  const paisNodo = document.querySelector("#pais").childNodes[1];
+  const ranking_UICNodo = document.querySelector("#ranking_UIC").childNodes[1];
+  fotografiaNodo.textContent = fotografia;
+  numeroDeInscripcionNodo.textContent = num_inscripcion;
+  nombreNodo.textContent = `${nombre} ${apellido}`;
+  numeroDeIdentificacionNodo.textContent = num_identificacion;
+  fechaDeNacimientoNodo.textContent = fecha_nacimiento_formateada;
+  paisNodo.value = pais;
+  ranking_UICNodo.textContent = ranking_UCI;
 };
 
 async function main() {
@@ -45,15 +81,13 @@ async function main() {
   let barraDeBusqueda = document.querySelector("input");
   barraDeBusqueda.addEventListener("keyup", async (event) => {
     if (event.key === "Enter") {
-        let resultadoDeBusqueda = undefined
+      let resultadoDeBusqueda = undefined;
       if (!barraDeBusqueda.value) {
         resultadoDeBusqueda = await eel.consultar_todos_los_ciclistas()();
-
       } else {
-        resultadoDeBusqueda =
-          await eel.barra_de_busqueda_general_ciclistas(
-            barraDeBusqueda.value
-          )();
+        resultadoDeBusqueda = await eel.barra_de_busqueda_general_ciclistas(
+          barraDeBusqueda.value
+        )();
       }
       renderizar_ciclistas(resultadoDeBusqueda);
     }

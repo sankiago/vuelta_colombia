@@ -88,7 +88,7 @@ class CiclistaDAO:
       """
       cursor             = conexion.cursor()
       #sentencia_consulta = f'SELECT num_inscripcion_ciclista, num_identificacion , nombre, apellido , strftime("%d/%m/%Y",fecha_de_nacimiento,"unixepoch") , pais,   num_equipo, ranking_UIC FROM ciclistas WHERE num_inscripcion_ciclista = {num_ciclista}'
-      sentencia_consulta = f'SELECT num_inscripcion_ciclista, num_identificacion , nombre, apellido , strftime("%d/%m/%Y",fecha_de_nacimiento,"unixepoch") , pais,   num_equipo, ranking_UIC FROM ciclistas WHERE num_inscripcion_ciclista = {num_ciclista}'
+      sentencia_consulta = f'SELECT num_inscripcion_ciclista, num_identificacion , nombre, apellido ,fotografia, strftime("%d/%m/%Y",fecha_de_nacimiento,"unixepoch") , pais,   num_equipo, ranking_UIC FROM ciclistas WHERE num_inscripcion_ciclista = {num_ciclista}'
       respuesta_consulta = cursor.execute(sentencia_consulta).fetchall()
       if len(respuesta_consulta) == 0:
         ciclista = None
