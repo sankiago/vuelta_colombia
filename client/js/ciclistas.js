@@ -1,8 +1,9 @@
 const consultarTodosLosCiclistas = eel.consultar_todos_los_ciclistas();
-const hacerBusquedaGeneralDeCiclistas =
-  eel.barra_de_busqueda_general_ciclistas();
+const hacerBusquedaGeneralDeCiclistas = eel.barra_de_busqueda_general_ciclistas;
 
 const renderizar_ciclistas = (ciclistas) => {
+  let rejillaCilcistas = document.querySelector(".rejillaCiclistas");
+  rejillaCilcistas.textContent = "";
   ciclistas.map((ciclistaActual) => {
     if (!ciclistaActual.fotografia)
       ciclistaActual.fotografia = "../img/foto_de_perfil.png";
@@ -29,23 +30,34 @@ const renderizar_ciclistas = (ciclistas) => {
     tarjetaCiclista.appendChild(cajaSuperior);
     tarjetaCiclista.appendChild(cajaInferior);
 
-    let rejillaCilcistas = document.querySelector(".rejillaCiclistas");
+    tarjetaCiclista.addEventListener('click', function(event){
+        console.log(event)
+        console.log(this)
+    })
+
     rejillaCilcistas.appendChild(tarjetaCiclista);
   });
 };
 
-async function main(){
-    renderizar_ciclistas(await consultarTodosLosCiclistas());
+async function main() {
+  renderizar_ciclistas(await consultarTodosLosCiclistas());
 
-    let barraDeBusqueda = document.querySelector('input')
-    barraDeBusqueda.addEventListener('keyup', async(event) =>{
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            console.log(barraDeBusqueda.value)
-            const resultadoDeBusqueda = await hacerBusquedaGeneralDeCiclistas(barraDeBusqueda.value)
-            renderizar_ciclistas(resultadoDeBusqueda)
-        }
-    })
+  let barraDeBusqueda = document.querySelector("input");
+  barraDeBusqueda.addEventListener("keyup", async (event) => {
+    if (event.key === "Enter") {
+        let resultadoDeBusqueda = undefined
+      if (!barraDeBusqueda.value) {
+        resultadoDeBusqueda = await eel.consultar_todos_los_ciclistas()();
+
+      } else {
+        resultadoDeBusqueda =
+          await eel.barra_de_busqueda_general_ciclistas(
+            barraDeBusqueda.value
+          )();
+      }
+      renderizar_ciclistas(resultadoDeBusqueda);
+    }
+  });
 }
 
-main()
+main();
