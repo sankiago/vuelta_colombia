@@ -7,7 +7,7 @@
     <title>Inicio</title>
     <link rel="stylesheet" href="css/fuentes.css">
     <link rel="stylesheet" href="css/plantilla.css">
-    <link rel="stylesheet" href="css/ciclistas.css">
+    <link rel="stylesheet" href="css/equipos.css">
     <script type="text/javascript" src="/eel.js"></script>
 </head>
 <body>
@@ -15,7 +15,7 @@
         <nav>
             <ul>
                 <li><a href="./home.html"><img id="imagen_cabecera" src="./img/logo_chiquito.svg" alt=""></a></li>
-                <li><a href=""><span>Ciclista</span></a>  </li>
+                <li><a href="./ciclistas.html"><span>Ciclista</span></a>  </li>
                 <li><a href="./equipos.html"><span>Equipo</span></a>  </li>
                 <li class="lista_desplegable">
                     <span>Resultados</span>
@@ -31,30 +31,16 @@
         <input type="search" name="" id="" placeholder="Buscar">
         <select class="selectorOscuro" name="" id="">
             <option value="">Buscar por:</option>
-            <option value="num_inscripcion_ciclista">Número de inscripción</option>
-            <option value="num_identificacion">Número de identificación</option>
-            <option value="nombre">Nombre</option>
-            <option value="apellido">Apellido</option>
+            <option value="nombre_equipo">Nombre del Equipo</option>
+            <option value="director_equipo">Director del Equipo</option>
             <option value="pais">País</option>
-            <option value="nombre_equipo">Equipo</option>
-            <option value="ranking_UIC">Ranking UIC</option>
         </select>
-        <select class="selectorClaro" name="" id="">
-            <option value="">Ordenar por:</option>
-            <option value="num_inscripcion_ciclista">Número de inscripción</option>
-            <option value="num_identificacion">Número de identificación</option>
-            <option value="nombre">Nombre</option>
-            <option value="apellido">Apellido</option>
-            <option value="pais">País</option>
-            <option value="nombre_equipo">Equipo</option>
-            <option value="ranking_UIC">Ranking UIC</option>
-        </select>
+        
         </div>
         <div class="rejillaCiclistas">
             <div class="tarjetaCiclista">
                 <div class="cajaSuperior">
-                    <img src="https://www.semana.com/resizer/g_J_vfDS0KSgwiwNscV9Gj8Bw4U=/1200x675/filters:format(jpg):quality(50)//cloudfront-us-east-1.images.arcpublishing.com/semana/RJPFEYPFPZAB7HTIONZWSQUHC4.jpg" alt="">
-                    <p>Nairo Quintana</p>
+                   Equipo 1
                 </div>
                 <div class="cajaInferior">
                     <div class="numeroDeInscripcion">
@@ -74,7 +60,7 @@
                 </div>
                 <div class="columna2">
                     <p class="nombre">Nairo Quintana</p>
-                    <p class="detalle" id="numeroDeIdentificacion"><b>ID:</b>123456789</p>
+                    <p class="detalle" id="numeroDeIdentifacion"><b>ID:</b>123456789</p>
                     <p class="detalle" id="fechaDeNacimiento"><b>Fecha de nacimiento:</b>20/20/2022</p>
                     <p class="detalle" id="pais"><b>País:</b><input type="text" name="" id="" value="Colombia"></p>
                     <p class="detalle" id="ranking_UIC"><b>Ranking UCI:</b>1</p>
