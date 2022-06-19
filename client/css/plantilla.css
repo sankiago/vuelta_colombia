@@ -1,0 +1,145 @@
+:root{
+    --amarillo: #FFC500;
+    --azul:     #1C244A;
+    --rojo:     #E1242D;
+    --rojo-transparente:     rgba(225, 36, 45, 0.2);
+    --fondo:    #FEF6D7;
+}
+
+html{
+    font-size: 6.7px;
+}
+
+*{
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100%;
+    width: 100%;
+}
+
+li{
+    list-style-type: none;   
+}
+
+header{
+    height: calc(88/1024 * 100vh);
+    width: 100%;
+    background-color: var(--azul);
+}
+
+header nav{
+    height: 100%;
+    width: 100%;
+    padding-inline: 25rem;
+}
+
+header nav ul{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header li{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+header nav img{
+    width: 9.6rem;
+    height: 4.9rem;
+}
+
+header span{
+    font-family: 'Inter';
+    font-size: 2.4rem;
+    font-weight: 400;
+    color: var(--fondo);
+}
+
+header span:hover{
+    /* background-color: var(--rojo-transparente); */
+    border-bottom: 0.3rem;
+    border-bottom-style: solid;
+}
+
+.lista_desplegable{
+    position: relative;
+    display: inline-flex;
+}
+
+.lista_desplegable_contenido{
+    display: none;
+}
+
+.lista_desplegable_contenido li{
+    height: initial;
+}
+
+.lista_desplegable_contenido a{
+    font-family: 'Inter';
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--azul);
+    text-decoration: none;
+}
+
+.lista_desplegable_contenido a:hover{
+    border-bottom: 0.3rem;
+    padding-bottom: 0.5rem;
+    border-bottom-style: solid;
+}
+
+.lista_desplegable:hover .lista_desplegable_contenido{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+    top: 100%;
+    border-bottom-left-radius: 1.6rem;
+    border-bottom-right-radius: 1.6rem;
+    border-style: solid;
+    border-top: none;
+    border-color: var(--azul);
+    background-color: var(--fondo);
+    width: 23rem;
+    height: 14.9rem;
+}
+
+
+footer{
+    background-color: var(--azul);
+    height: calc(87/1024 * 100vh);
+    width: 100vw;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+}
+
+footer p {
+    font-family: 'Lucida Console';
+    font-size: 2.4rem;
+    font-weight: 400;
+    color: var(--fondo);
+    text-align: center;
+    width: 100%    
+}
+
+footer p a{
+    color: var(--rojo);
+    text-decoration: none;
+}
+
+footer p a:hover{
+    color: var(--rojo);
+    text-decoration: underline;
+}

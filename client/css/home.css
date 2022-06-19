@@ -1,0 +1,24 @@
+:root{
+    --amarillo: #FFC500;
+    --azul:     #1C244A;
+    --rojo:     #E1242D;
+    --fondo:    #FEF6D7;
+}
+
+body{
+    overflow: hidden;
+}
+
+main{
+    background-color: var(--fondo);
+    height: calc(849/1024 * 100vh);
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main img{
+    width: 94.8rem;
+    height: 58rem
+}
