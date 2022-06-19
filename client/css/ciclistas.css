@@ -1,0 +1,120 @@
+:root{
+    --amarillo: #FFC500;
+    --azul:     #1C244A;
+    --azul-transparente:     rgba(28, 36, 74, 0.9);
+    --rojo:     #E1242D;
+    --rojo-transparente:     rgba(225, 36, 45, 0.2);
+    --fondo:    #FEF6D7;
+}
+
+main{
+    background-color: var(--fondo);
+    min-height: calc(849/1024 * 100vh);
+    width: 100vw;
+    padding: 7rem;
+    display: grid;
+    grid-template: 7.1rem 1fr / repeat(5, 1fr) ;
+    column-gap: 2rem;
+    row-gap: 4rem;
+}
+
+main input{
+    background-color: var(--fondo);
+    border-color: var(--azul);
+    border-radius: 2.1rem;
+    grid-column: 1/3;
+    padding-left: 4.9rem;
+    color: var(--azul);
+    font-size: 3rem;
+    font-family: 'Inter';
+}
+
+::placeholder{
+    font-size: 3rem;
+    font-family: 'Inter';
+    color: var(--azul-transparente);
+}
+
+main select{
+    /* appearance: none; */
+    outline: none;
+    cursor: pointer;
+    background-color: #1C244A;
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+    align-items: center;
+    text-align: center;
+    font-family: 'Montserrat SemiBold';
+    font-size: 2.1rem;
+    letter-spacing: 0.05rem;
+    color: var(--fondo);
+}
+
+main select.selectorClaro{
+    background-color: var(--fondo);
+    border-width: 0.3rem;
+    border-style: solid;
+    border-color: var(--azul);
+    color: var(--azul);
+}
+
+.rejillaCiclistas{
+    grid-row: 2/3;
+    grid-column: 1/6;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(31rem,1fr));
+    grid-auto-rows: 19rem;
+    gap: 2rem
+}
+
+.tarjetaCiclista .cajaSuperior{
+    height: 13.7rem;
+    background-color: var(--azul);
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.tarjetaCiclista .cajaSuperior p{
+    color: var(--fondo);
+    font-size:  3rem;
+    font-family: 'Inter Bold';
+    width: 17rem;
+}
+
+.tarjetaCiclista .cajaSuperior img{
+    height: 6.65rem;
+    width: 6.65rem;
+    object-fit: cover;
+    border-radius: 100%;
+    border-style: solid;
+    border-width: 0.1rem;
+    border-color: black;
+}
+
+.tarjetaCiclista .cajaInferior{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5.3rem;
+    border-style: solid;
+    border-color: var(--azul);
+    border-width: 0.3rem;
+    border-bottom-left-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+}
+
+.tarjetaCiclista .cajaInferior .numeroDeInscripcion{
+    width: 2.4rem;
+    height: 2.4rem;
+    background-color: var(--azul);
+    border-radius: 100%;
+    color: var(--fondo);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
+    font-family: 'Inter Bold';
+}

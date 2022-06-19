@@ -39,11 +39,45 @@ class CiclistaDAO:
       Recibe un objeto Connection (conexion).
       """
       cursor             = conexion.cursor()
-      sentencia_consulta = f'SELECT num_inscripcion_ciclista, num_identificacion , nombre, apellido , strftime("%d/%m/%Y",fecha_de_nacimiento,"unixepoch") , pais,   num_equipo, ranking_UIC FROM ciclistas'
+      sentencia_consulta = f'SELECT num_inscripcion_ciclista, num_identificacion , nombre, apellido, fotografia , strftime("%d/%m/%Y",fecha_de_nacimiento,"unixepoch") , pais,   num_equipo, ranking_UIC FROM ciclistas'
       respuesta_consulta = cursor.execute(sentencia_consulta).fetchall()
       lista_ciclistas    = [Ciclista(tupla) for tupla in respuesta_consulta]
       return lista_ciclistas
     
+    @staticmethod
+    def buscar_en_todos_los_campos(conexion, cadena_de_busqueda):
+      cursor             = conexion.cursor()
+      print(cadena_de_busqueda)
+      sentencia_consulta = f"""
+      SELECT 
+        num_inscripcion_ciclista,
+        num_identificacion,
+        nombre,
+        apellido,
+        fotografia,
+        strftime("%d/%m/%Y",fecha_de_nacimiento,"unixepoch"),
+        pais,
+        num_equipo,
+        ranking_UIC 
+      FROM 
+        ciclistas
+      WHERE
+      
+           (REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(num_inscripcion_ciclista,'á','a'),'é','e' ),'í','i'),'ó','o'),'ú','u') = '{cadena_de_busqueda}' COLLATE NOCASE )
+        OR (REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(num_identificacion,'á','a'),'é','e' ),'í','i'),'ó','o'),'ú','u') = '{cadena_de_busqueda}' COLLATE NOCASE )
+        OR (REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(nombre,'á','a'),'é','e' ),'í','i'),'ó','o'),'ú','u') = '{cadena_de_busqueda}' COLLATE NOCASE )
+        OR (REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(apellido,'á','a'),'é','e' ),'í','i'),'ó','o'),'ú','u') = '{cadena_de_busqueda}' COLLATE NOCASE) 
+        OR (REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(nombre || ' ' || apellido,'á','a'),'é','e' ),'í','i'),'ó','o'),'ú','u') = '{cadena_de_busqueda}' COLLATE NOCASE )
+        OR (REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(fotografia,'á','a'),'é','e' ),'í','i'),'ó','o'),'ú','u') = '{cadena_de_busqueda}' COLLATE NOCASE )
+        OR (REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(strftime("%d/%m/%Y",fecha_de_nacimiento,"unixepoch"),'á','a'),'é','e' ),'í','i'),'ó','o'),'ú','u') = '{cadena_de_busqueda}' COLLATE NOCASE )
+        OR (REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(pais,'á','a'),'é','e' ),'í','i'),'ó','o'),'ú','u') = '{cadena_de_busqueda}' COLLATE NOCASE )
+        OR (REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(num_equipo,'á','a'),'é','e' ),'í','i'),'ó','o'),'ú','u') = '{cadena_de_busqueda}' COLLATE NOCASE )
+        OR (REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(ranking_UIC,'á','a'),'é','e' ),'í','i'),'ó','o'),'ú','u') = '{cadena_de_busqueda}' COLLATE NOCASE)
+      """
+      respuesta_consulta = cursor.execute(sentencia_consulta).fetchall()
+      lista_ciclistas    = [Ciclista(tupla) for tupla in respuesta_consulta]
+      return lista_ciclistas
+
     @staticmethod
     def consultar_info_vigente_ciclista(conexion, num_ciclista):
       """
@@ -52,6 +86,7 @@ class CiclistaDAO:
       Recibe el número de inscripción (num_ciclista).
       """
       cursor             = conexion.cursor()
+      #sentencia_consulta = f'SELECT num_inscripcion_ciclista, num_identificacion , nombre, apellido , strftime("%d/%m/%Y",fecha_de_nacimiento,"unixepoch") , pais,   num_equipo, ranking_UIC FROM ciclistas WHERE num_inscripcion_ciclista = {num_ciclista}'
       sentencia_consulta = f'SELECT num_inscripcion_ciclista, num_identificacion , nombre, apellido , strftime("%d/%m/%Y",fecha_de_nacimiento,"unixepoch") , pais,   num_equipo, ranking_UIC FROM ciclistas WHERE num_inscripcion_ciclista = {num_ciclista}'
       respuesta_consulta = cursor.execute(sentencia_consulta).fetchall()
       if len(respuesta_consulta) == 0:

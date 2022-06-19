@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="css/fuentes.css">
+    <link rel="stylesheet" href="css/plantilla.css">
+    <link rel="stylesheet" href="css/ciclistas.css">
+    <script type="text/javascript" src="/eel.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="./home.html"><img id="imagen_cabecera" src="./img/logo_chiquito.svg" alt=""></a></li>
+                <li><a href=""><span>Ciclista</span></a>  </li>
+                <li><a href=""><span>Equipo</span></a>  </li>
+                <li class="lista_desplegable">
+                    <span>Resultados</span>
+                    <ul class="lista_desplegable_contenido">
+                        <li><a href="">General</a></li>
+                        <li><a href="">Por etapa</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <input type="search" name="" id="" placeholder="Buscar">
+        <select class="selectorOscuro" name="" id="">
+            <option value="">Buscar por:</option>
+            <option value="num_inscripcion_ciclista">Número de inscripción</option>
+            <option value="num_identificacion">Número de identificación</option>
+            <option value="nombre">Nombre</option>
+            <option value="apellido">Apellido</option>
+            <option value="pais">País</option>
+            <option value="nombre_equipo">Equipo</option>
+            <option value="ranking_UIC">Ranking UIC</option>
+        </select>
+        <select class="selectorClaro" name="" id="">
+            <option value="">Ordenar por:</option>
+            <option value="num_inscripcion_ciclista">Número de inscripción</option>
+            <option value="num_identificacion">Número de identificación</option>
+            <option value="nombre">Nombre</option>
+            <option value="apellido">Apellido</option>
+            <option value="pais">País</option>
+            <option value="nombre_equipo">Equipo</option>
+            <option value="ranking_UIC">Ranking UIC</option>
+        </select>
+        </div>
+        <div class="rejillaCiclistas">
+            <div class="tarjetaCiclista">
+                <div class="cajaSuperior">
+                    <img src="https://www.semana.com/resizer/g_J_vfDS0KSgwiwNscV9Gj8Bw4U=/1200x675/filters:format(jpg):quality(50)//cloudfront-us-east-1.images.arcpublishing.com/semana/RJPFEYPFPZAB7HTIONZWSQUHC4.jpg" alt="">
+                    <p>Nairo Quintana</p>
+                </div>
+                <div class="cajaInferior">
+                    <div class="numeroDeInscripcion">
+                        1
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>Made with <a target="_blank" href="https://github.com/sankiago/vuelta_colombia">&lt3</a> by grupo 4</p>
+    </footer>
+    <script src="./js/ciclistas.js"></script>
+</body>
+</html>

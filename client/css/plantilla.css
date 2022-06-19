@@ -70,20 +70,20 @@ header span:hover{
     border-bottom-style: solid;
 }
 
-.lista_desplegable{
+header .lista_desplegable{
     position: relative;
     display: inline-flex;
 }
 
-.lista_desplegable_contenido{
+header .lista_desplegable_contenido{
     display: none;
 }
 
-.lista_desplegable_contenido li{
+header .lista_desplegable_contenido li{
     height: initial;
 }
 
-.lista_desplegable_contenido a{
+header .lista_desplegable_contenido a{
     font-family: 'Inter';
     font-size: 2rem;
     font-weight: 400;
@@ -91,13 +91,13 @@ header span:hover{
     text-decoration: none;
 }
 
-.lista_desplegable_contenido a:hover{
+header .lista_desplegable_contenido a:hover{
     border-bottom: 0.3rem;
     padding-bottom: 0.5rem;
     border-bottom-style: solid;
 }
 
-.lista_desplegable:hover .lista_desplegable_contenido{
+header .lista_desplegable:hover .lista_desplegable_contenido{
     position: absolute;
     display: flex;
     flex-direction: column;
