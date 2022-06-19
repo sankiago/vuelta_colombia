@@ -10,13 +10,14 @@ class CiclistaDAO:
       Recibe una lista de la siguiente manera:
       [num_identificacion, nombre, apellido, fecha_nacimiento, pais, num_equipo,ranking_UIC]
       """
+
       #Validando si el equipo del ciclista existe
-      if len(EquipoDAO.consultar_equipo_por_id(conexion, ciclista.num_equipo)) == 0:
+      if EquipoDAO.consultar_equipo_por_id(conexion, ciclista.num_equipo) == None:
           raise ValueError('El equipo seleccionado no existe')
       
       cursor              = conexion.cursor()
       sentencia_insercion = 'INSERT INTO ciclistas(num_identificacion ,nombre ,apellido ,fecha_de_nacimiento ,pais ,num_equipo ,ranking_UIC) VALUES(?,?,?,strftime("%s", ?),?,?,?)'
-      cursor.execute(sentencia_insercion, ciclista.convertir_a_tabla())
+      cursor.execute(sentencia_insercion, ciclista.convertir_a_lista())
       conexion.commit()
       
       
