@@ -22,14 +22,14 @@ class CiclistaDAO:
       
       
     @staticmethod
-    def actualizar_ranking_UIC(conexion, id_ciclista, nuevo_ranking_UIC):
+    def actualizar_pais(conexion, id_ciclista, nuevo_pais):
       """
-      Función actualización ranking UIC.
-      Recibe el número del ciclista pra la actualización del ranking UIC (num_identificacion).
-      Recibe el nuevo ranking UIC.
+      Función actualización Pais.
+      Recibe el número del ciclista pra la actualización del pais (num_identificacion).
+      Recibe el nuevo país.
       """
       cursor                  = conexion.cursor()
-      sentencia_actualizacion = f'UPDATE ciclistas SET ranking_UIC = {nuevo_ranking_UIC} WHERE num_inscripcion_ciclista = {id_ciclista}'
+      sentencia_actualizacion = f'UPDATE ciclistas SET pais = {nuevo_pais} WHERE num_inscripcion_ciclista = {id_ciclista}'
       cursor.execute(sentencia_actualizacion)
       conexion.commit()
 
@@ -78,6 +78,41 @@ class CiclistaDAO:
       respuesta_consulta = cursor.execute(sentencia_consulta).fetchall()
       lista_ciclistas    = [Ciclista(tupla) for tupla in respuesta_consulta]
       return lista_ciclistas
+
+    @staticmethod
+    #Necesita que el parametro_orden esté limpio (que aparezca tal cual como en la base de datos) para que funcione, pues de no ser así, arrojará un error
+    def consultar_todos_los_ciclistas(conexion,parametro_orden):
+      """
+      Función consultar todos los ciclistas.
+      Recibe un objeto conexión (conexion).
+      Recibe el parámetro por el cual se ordenará la consulta (parametro_orden).
+      """
+      cursor            = conexion.cursor()
+      sentencia_consulta = f'''SELECT
+      num_inscripcion_ciclista,
+		  nombre,
+		  apellido,
+		  pais
+		  FROM ciclistas 
+		  ORDER BY {parametro_orden}'''
+
+      respuesta_consulta = cursor.execute(sentencia_consulta).fetchall()
+      lista_ciclistas    = [Ciclista(tupla) for tupla in respuesta_consulta]
+      return lista_ciclistas
+
+    @staticmethod
+    def eliminar_ciclista_por_id(conexion,ID_ciclista):
+      """
+      Función eliminar ciclista por ID.
+      Recibe un objeto conexión (conexion).
+      Recibe el ID del ciclista a eliminar (ID_ciclista).
+      """
+      cursor            = conexion.cursor()
+      sentencia_consulta = f'''DELETE FROM ciclistas WHERE num_inscripcion_ciclista = {ID_ciclista}'''
+      cursor.execute(sentencia_consulta)
+
+            
+      pass
 
     @staticmethod
     def consultar_info_vigente_ciclista(conexion, num_ciclista):

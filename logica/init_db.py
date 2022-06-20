@@ -17,9 +17,39 @@ def crear_tablas(conexion):
   """
   cursor = conexion.cursor()
 
-  sentencia_equipos       = 'CREATE TABLE IF NOT EXISTS          equipos(num_equipo INTEGER PRIMARY KEY AUTOINCREMENT              , nombre TEXT                ,              pais_sede TEXT                         , director TEXT      , marca_bicicleta TEXT, marca_ciclocomputador TEXT,  direccion_sede_central TEXT,  telefono INTEGER,       correo_electronico TEXT)'
-  sentencia_ciclistas     = 'CREATE TABLE IF NOT EXISTS        ciclistas(num_inscripcion_ciclista INTEGER PRIMARY KEY AUTOINCREMENT, num_identificacion INTEGER , nombre TEXT        , apellido TEXT       , fecha_de_nacimiento INTEGER, pais TEXT,   num_equipo INTEGER, fotografia TEXT, ranking_UIC TEXT, FOREIGN KEY(num_equipo) REFERENCES equipos(num_equipo))'
-  sentencia_clasificacion = 'CREATE TABLE IF NOT EXISTS    clasificacion(num_etapa INTEGER                                         , num_ciclista INTEGER       , num_etapa_num_ciclista TEXT PRIMARY KEY, posicion_etapa TEXT, tiempo_empleado INTEGER, num_equipo INTEGER, esta_retirado TEXT, FOREIGN KEY(num_equipo) REFERENCES equipos(num_equipo), FOREIGN KEY(num_ciclista) REFERENCES ciclistas(num_inscripcion_ciclista))'     
+  sentencia_equipos = '''CREATE TABLE IF NOT EXISTS equipos(
+  num_equipo INTEGER PRIMARY KEY AUTOINCREMENT,
+  nombre TEXT,
+  pais_sede TEXT,
+  director TEXT,
+  marca_bicicleta TEXT,
+  marca_ciclocomputador TEXT,
+  direccion_sede_central TEXT,
+  telefono INTEGER,
+  correo_electronico TEXT)'''
+  sentencia_ciclistas = '''CREATE TABLE IF NOT EXISTS ciclistas(
+  num_inscripcion_ciclista INTEGER PRIMARY KEY AUTOINCREMENT,
+  num_identificacion INTEGER,
+  nombre TEXT,
+  apellido TEXT,
+  fecha_de_nacimiento INTEGER,
+  pais TEXT,
+  num_equipo INTEGER,
+  fotografia TEXT,
+  ranking_UIC TEXT,
+  FOREIGN KEY(num_equipo) REFERENCES equipos(num_equipo))'''
+  sentencia_clasificacion = '''CREATE TABLE IF NOT EXISTS clasificacion(
+  num_etapa INTEGER,
+  num_ciclista INTEGER,
+  num_etapa_num_ciclista TEXT PRIMARY KEY,
+  posicion_etapa TEXT,
+  tiempo_empleado INTEGER,
+  num_equipo INTEGER,
+  esta_retirado TEXT,
+  FOREIGN KEY(num_equipo) REFERENCES equipos(num_equipo),
+  CONSTRAINT fk_num_ciclista
+    FOREIGN KEY(num_ciclista) REFERENCES ciclistas(num_inscripcion_ciclista) 
+    ON DELETE CASCADE)'''
 
   cursor.execute(sentencia_equipos)
   cursor.execute(sentencia_ciclistas)

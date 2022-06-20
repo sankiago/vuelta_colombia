@@ -1,0 +1,22 @@
+funciones:
+*ciclistas
+-/ función que devuelve todos los ciclistas de la bd (nombre, apellido y número de inscripción)
+- función barra de búsqueda para todos los campos de la tabla ciclistas (nombre, apellido y número de inscripción)
+- función barra de de búsqueda para un campo en específico de la tabla ciclistas (nombre, apellido y número de inscripción)
+Y- función que trae la toda información de un ciclista por su número de inscripción
+Y- funcion que devuelve todos los ciclistas de la DB y los ordena por un campo específico
+- funcion que permite eliminar un ciclista por numero de inscripcion
+
+*equipos
+Y- función que devuelve a todos los equipos de la bd (nombre, apellido y número de equipo)
+- función barra de búsqueda para todos los campos de la tabla equipos (nombre, apellido y número de equipo)
+- función barra de de búsqueda para un campo en específico de la tabla equipos (nombre y número de equipo)
+Y- función que trae la toda información de un equipo por el número de equipo
+
+*resultados/etapas
+Y- función que trae todos los números de etapas que han sido creadas
+Y- función que me permite cargar los resultados de una etapa
+
+*resultados/general
+Y- función  que trae la clasificación general ordenada por parametro de busqueda
+Y- funcion que trae la clasificacion por etapa ordenada por parametro de busqueda
