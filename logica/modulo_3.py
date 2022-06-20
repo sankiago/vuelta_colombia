@@ -22,6 +22,14 @@ class EtapaDAO:
       raise ValueError(error)
     conexion.commit()
 
+  @staticmethod 
+  def consultar_num_etapas(conexion):
+    cursor = conexion.cursor()
+    sentencia_consulta = f'SELECT num_etapa FROM clasificacion GROUP BY num_etapa'
+    resultado_consulta = cursor.execute(sentencia_consulta).fetchall()
+    lista_etapas = [tupla[0] for tupla in resultado_consulta]
+    return lista_etapas
+
   @staticmethod
   def actualizar_info_ciclista(self, conexion, nueva_posicion, num_ciclista, nuevo_tiempo):
       """

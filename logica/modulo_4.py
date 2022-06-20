@@ -5,14 +5,15 @@ from modelos import Resultado
 
 class Resultado_DAO:
 	@staticmethod
-	def consulta_etapa(conexion,num_etapa,orden):
+	def consulta_etapa(conexion,num_etapa,orden=None):
 		'''
 		Función consulta por etapa.
 		Recibe un objeto conexión.
 		Recibe el parámetro de orden de tabla.
 		Consulta la informacion de la clasificación de la etapa, ordenada según el parámetro recibido
 		'''
-
+		if orden == None:
+			orden = "tiempo_empleado"
 		cursor = conexion.cursor()
 		sentencia_consulta = f'''SELECT clasificacion.num_etapa,
 		ciclistas.num_inscripcion_ciclista,
@@ -30,13 +31,15 @@ class Resultado_DAO:
 		return etapa
 
 	@staticmethod
-	def consulta_general(conexion,orden):
+	def consulta_general(conexion,orden=None):
 		'''
 		Función consulta de la clasificación general.
 		Recibe un objeto conexión.
 		Recibe el parámetro de orden de la tabla.
 		Consulta la informacion de la clasificación general de la carrera, ordenada según el parámetro recibido
 		'''
+		if orden == None:
+			orden = "tiempo_empleado"
 		cursor = conexion.cursor()
 
 		sentencia_consulta = f'''SELECT 
