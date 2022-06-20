@@ -36,6 +36,8 @@ const renderizar_ciclistas = (ciclistas) => {
       ).textContent;
       ciclista = await eel.consultar_ciclista(numeroDeCiclista)();
       renderizar_detalles(ciclista);
+      const detalles = document.querySelector('.detallesCiclista_fondo')
+      detalles.style.display = 'flex'
     });
 
     rejillaCilcistas.appendChild(tarjetaCiclista);
@@ -57,8 +59,8 @@ const renderizar_detalles = ({
   const fotografiaNodo = document.querySelector(".fotografia");
   const numeroDeInscripcionNodo = document.querySelector(
     ".columna1 .numeroDeInscripcion"
-  ).childNodes[1];
-  const nombreNodo = document.querySelector(".columna2 .nombre").childNodes[1];
+  );
+  const nombreNodo = document.querySelector(".columna2 .nombre");
   const numeroDeIdentificacionNodo = document.querySelector(
     "#numeroDeIdentificacion"
   ).childNodes[1];
@@ -66,7 +68,7 @@ const renderizar_detalles = ({
     document.querySelector("#fechaDeNacimiento").childNodes[1];
   const paisNodo = document.querySelector("#pais").childNodes[1];
   const ranking_UICNodo = document.querySelector("#ranking_UIC").childNodes[1];
-  fotografiaNodo.textContent = fotografia;
+  fotografiaNodo.setAttribute('src',fotografia)
   numeroDeInscripcionNodo.textContent = num_inscripcion;
   nombreNodo.textContent = `${nombre} ${apellido}`;
   numeroDeIdentificacionNodo.textContent = num_identificacion;
@@ -74,6 +76,7 @@ const renderizar_detalles = ({
   paisNodo.value = pais;
   ranking_UICNodo.textContent = ranking_UCI;
 };
+
 
 async function main() {
   renderizar_ciclistas(await consultarTodosLosCiclistas());
@@ -92,6 +95,12 @@ async function main() {
       renderizar_ciclistas(resultadoDeBusqueda);
     }
   });
+
+  const botonDeCerrar = document.querySelector('.closeWindow')
+  const detalles = document.querySelector('.detallesCiclista_fondo')
+  botonDeCerrar.addEventListener('click', function(){
+    detalles.style.display = 'none'
+  })
 }
 
 main();
