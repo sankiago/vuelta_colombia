@@ -129,9 +129,7 @@ class CiclistaDAO:
       cursor            = conexion.cursor()
       sentencia_consulta = f'''DELETE FROM ciclistas WHERE num_inscripcion_ciclista = {ID_ciclista}'''
       cursor.execute(sentencia_consulta)
-
-            
-      pass
+      conexion.commit()
 
     @staticmethod
     def consultar_ciclista(conexion, num_ciclista):

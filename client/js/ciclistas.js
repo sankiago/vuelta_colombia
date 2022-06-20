@@ -109,6 +109,10 @@ const mostrarBotonGuardarCambios = () =>{
   botonGuardarCambios.style.display = 'flex'
 }
 
+const crearCiclista = () =>{
+  
+}
+
 const borrarCiclista = () =>{
   const deseaEliminarUsuario = confirm('¿Está seguro de eliminar al ciclista?😳😳😳')
   if(deseaEliminarUsuario){
