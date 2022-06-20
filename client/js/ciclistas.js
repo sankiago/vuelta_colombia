@@ -110,11 +110,13 @@ const mostrarBotonGuardarCambios = () =>{
 }
 
 const borrarCiclista = () =>{
-  confirm('¿Está seguro de eliminar al ciclista?😳😳😳')
-  const numeroDeCiclista = document.querySelector('.detallesCiclista_contenedor .numeroDeInscripcion').textContent
-  eel.eliminar_ciclista(numeroDeCiclista)()
-  alert('Ciclista eliminado💀🥵🤙')
-  location.reload()
+  const deseaEliminarUsuario = confirm('¿Está seguro de eliminar al ciclista?😳😳😳')
+  if(deseaEliminarUsuario){
+    const numeroDeCiclista = document.querySelector('.detallesCiclista_contenedor .numeroDeInscripcion').textContent
+    eel.eliminar_ciclista(numeroDeCiclista)()
+    alert('Ciclista eliminado💀🥵🤙')
+    location.reload()
+  }
 }
 
 async function main() {

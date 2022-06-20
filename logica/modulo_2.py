@@ -16,7 +16,20 @@ class CiclistaDAO:
           raise ValueError('El equipo seleccionado no existe')
       
       cursor              = conexion.cursor()
-      sentencia_insercion = 'INSERT INTO ciclistas(num_identificacion ,nombre ,apellido ,fecha_de_nacimiento ,pais ,num_equipo ,ranking_UIC) VALUES(?,?,?,strftime("%s", ?),?,?,?)'
+      sentencia_insercion = """
+      INSERT INTO
+         ciclistas(
+          num_identificacion,
+          nombre,
+          apellido,
+          fotografia,
+          fecha_de_nacimiento,
+          pais,
+          num_equipo,
+          ranking_UIC
+          )
+      VALUES
+      (?,?,?,strftime("%s", ?),?,?,?)"""
       cursor.execute(sentencia_insercion, ciclista.convertir_a_lista())
       conexion.commit()
             

@@ -42,4 +42,4 @@ def ciclista_actualizar_nacionalidad(numero_de_ciclista, nuevo_pais):
 
 #Inicializar conexión js/python
 eel.init('client')
-eel.start('home.html')
+eel.start('home.html', cmdline_args=['--start-fullscreen'])
