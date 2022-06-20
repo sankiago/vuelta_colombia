@@ -138,15 +138,49 @@ main select.selectorClaro{
     font-family: 'Inter Bold';
 }
 
+.nuevoCiclistaWrapper{
+    position: absolute;
+    bottom: 13rem;
+    right: 5rem;
+    display: flex;
+    align-items: center;
+}
+
+.nuevoCiclistaWrapper .letrero{
+    width: 24.1rem;
+    height: 4rem;
+    display: flex;
+    border-radius: 0.4rem;
+    margin-right: 1.6rem;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--azul);
+    color: var(--fondo);
+    font-size: 2rem;
+    position: relative;
+    display: none;
+}
+
+.nuevoCiclistaWrapper:hover .letrero{
+    display: flex;
+}
+
+.nuevoCiclistaWrapper:hover .letrero::after{
+    content: '';
+    background-image: url('../img/flecha.svg');
+    width: 0.75rem;
+    height: 1.5rem;
+    background-size: contain;
+    position: absolute;
+    right: -0.6rem;
+}
+
 .nuevoCiclista{
     height: 6rem;
     width: 6rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    bottom: 13rem;
-    right: 5rem;
     color: var(--azul);
     border-style: solid;
     border-color: var(--azul);
@@ -155,6 +189,12 @@ main select.selectorClaro{
     font-size: 3.5rem;
     font-weight: 800;
     cursor: pointer;
+    text-decoration: none;
+}
+
+.nuevoCiclista:visited{
+    text-decoration: none;
+    color: var(--azul);
 }
 
 .detallesCiclista_fondo{

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="css/fuentes.css">
+    <link rel="stylesheet" href="css/plantilla.css">
+    <link rel="stylesheet" href="./css/nuevo_ciclista.css">
+    <link rel="shortcut icon" type="image/x-icon" href="img/logo_chiquito.svg">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="./home.html"><img id="imagen_cabecera" src="./img/logo_chiquito.svg" alt=""></a></li>
+                <li><a href="./ciclistas.html"><span>Ciclista</span></a>  </li>
+                <li><a href="./equipos.html"><span>Equipo</span></a>  </li>
+                <li class="lista_desplegable">
+                    <span>Resultados</span>
+                    <ul class="lista_desplegable_contenido">
+                        <li><a href="">General</a></li>
+                        <li><a href="">Por etapa</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Nuevo Ciclista</h1>
+        <div class="columna1">
+            <img class="fotografia" src="./img/foto_de_perfil.png" alt="">
+            <label for="input_fotografia">
+                Elegir foto
+                <input type="file" name="input_fotografia" id="">
+            </label>
+        </div>
+        <div class="columna2">
+            <input type="text" class="text_field" id="nombre" placeholder="Nombre">
+            <input type="text" class="text_field" id="apellido" placeholder="Apellido">
+            <input type="text" class="text_field" id="id" placeholder="ID">
+            <input type="text" class="text_field" id="pais" placeholder="País">
+            <input type="text" class="text_field" id="fechaDeNacimiento" placeholder="Fecha de nacimiento">
+            <input type="text" class="text_field" id="equipo" placeholder="Equipo">
+            <input type="text" class="text_field" id="rankingUCI" placeholder="Ranking UCI">
+            <div class="boton">Guardar usuario</div>
+        </div>
+    </main>
+    <footer>
+        <p>Made with <a target="_blank" href="https://github.com/sankiago/vuelta_colombia">&lt3</a> by grupo 2</p>
+    </footer>
+    <script src="./js/nuevo_ciclista.js"></script>
+</body>
+</html>
