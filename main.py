@@ -8,8 +8,8 @@ crear_tablas(conexion)
 
 #Exponiendo funciones a js
 @eel.expose
-def consultar_todos_los_ciclistas():
-    ciclistas = CiclistaDAO.consultar_info_vigente(conexion)
+def consultar_todos_los_ciclistas(parametro_de_orden=None):
+    ciclistas = CiclistaDAO.consultar_todos_los_ciclistas(conexion, parametro_de_orden)
     ciclistas_como_diccionarios = list(map(lambda ciclista: vars(ciclista), ciclistas))
     print('Se consultaron los ciclistas 👍')
     return ciclistas_como_diccionarios
@@ -23,10 +23,22 @@ def barra_de_busqueda_general_ciclistas(sentencia_de_busqueda):
 
 @eel.expose
 def consultar_ciclista(numero_de_ciclista):
-    ciclista = CiclistaDAO.consultar_info_vigente_ciclista(conexion, numero_de_ciclista)
+    ciclista = CiclistaDAO.consultar_ciclista(conexion, numero_de_ciclista)
     ciclistas_como_diccionarios = vars(ciclista)
     print(f'Se consultó al ciclista {numero_de_ciclista}')
     return ciclistas_como_diccionarios
+
+@eel.expose
+def eliminar_ciclista(numero_de_ciclista):
+    CiclistaDAO.eliminar_ciclista_por_id(conexion, numero_de_ciclista)
+    print(f'Se eliminó al ciclista {numero_de_ciclista}')
+
+@eel.expose
+def ciclista_actualizar_nacionalidad(numero_de_ciclista, nuevo_pais):
+    CiclistaDAO.actualizar_pais(conexion, numero_de_ciclista, nuevo_pais)
+    print(f'Se actualizó la nacionalidad del ciclista {numero_de_ciclista}')
+
+
 
 #Inicializar conexión js/python
 eel.init('client')

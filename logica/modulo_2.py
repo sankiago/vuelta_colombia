@@ -19,8 +19,7 @@ class CiclistaDAO:
       sentencia_insercion = 'INSERT INTO ciclistas(num_identificacion ,nombre ,apellido ,fecha_de_nacimiento ,pais ,num_equipo ,ranking_UIC) VALUES(?,?,?,strftime("%s", ?),?,?,?)'
       cursor.execute(sentencia_insercion, ciclista.convertir_a_lista())
       conexion.commit()
-      
-      
+            
     @staticmethod
     def actualizar_pais(conexion, id_ciclista, nuevo_pais):
       """
@@ -29,22 +28,17 @@ class CiclistaDAO:
       Recibe el nuevo país.
       """
       cursor                  = conexion.cursor()
-      sentencia_actualizacion = f'UPDATE ciclistas SET pais = {nuevo_pais} WHERE num_inscripcion_ciclista = {id_ciclista}'
+      sentencia_actualizacion = f"""
+      UPDATE
+        ciclistas
+      SET
+        pais = '{nuevo_pais}'
+      WHERE 
+        num_inscripcion_ciclista = {id_ciclista}
+      """
       cursor.execute(sentencia_actualizacion)
       conexion.commit()
 
-    @staticmethod
-    def consultar_info_vigente(conexion):
-      """
-      Función consultar informacion viegente.
-      Recibe un objeto Connection (conexion).
-      """
-      cursor             = conexion.cursor()
-      sentencia_consulta = f'SELECT num_inscripcion_ciclista, num_identificacion , nombre, apellido, fotografia , strftime("%d/%m/%Y",fecha_de_nacimiento,"unixepoch") , pais,   num_equipo, ranking_UIC FROM ciclistas'
-      respuesta_consulta = cursor.execute(sentencia_consulta).fetchall()
-      lista_ciclistas    = [Ciclista(tupla) for tupla in respuesta_consulta]
-      return lista_ciclistas
-    
     @staticmethod
     def buscar_en_todos_los_campos(conexion, cadena_de_busqueda):
       cursor             = conexion.cursor()
@@ -81,21 +75,33 @@ class CiclistaDAO:
 
     @staticmethod
     #Necesita que el parametro_orden esté limpio (que aparezca tal cual como en la base de datos) para que funcione, pues de no ser así, arrojará un error
-    def consultar_todos_los_ciclistas(conexion,parametro_orden):
+    def consultar_todos_los_ciclistas(conexion,parametro_orden=None):
       """
       Función consultar todos los ciclistas.
       Recibe un objeto conexión (conexion).
       Recibe el parámetro por el cual se ordenará la consulta (parametro_orden).
       """
-      cursor            = conexion.cursor()
-      sentencia_consulta = f'''SELECT
-      num_inscripcion_ciclista,
-		  nombre,
-		  apellido,
-		  pais
-		  FROM ciclistas 
-		  ORDER BY {parametro_orden}'''
 
+      campos = ['num_inscripcion_ciclista','num_identificacion','nombre','apellido','fecha_de_nacimiento','pais','num_equipo','fotografia','ranking_UIC']
+      if (parametro_orden == None) or (parametro_orden not in campos):
+        parametro_orden = 'nombre'
+      cursor            = conexion.cursor()
+      sentencia_consulta = f''' 
+      SELECT
+        num_inscripcion_ciclista,
+        num_identificacion,
+        nombre,
+        apellido,
+        fotografia,
+        strftime("%d/%m/%Y",fecha_de_nacimiento,"unixepoch"),
+        pais,
+        num_equipo,
+        ranking_UIC
+		  FROM
+        ciclistas 
+		  ORDER BY
+        {parametro_orden}
+      '''
       respuesta_consulta = cursor.execute(sentencia_consulta).fetchall()
       lista_ciclistas    = [Ciclista(tupla) for tupla in respuesta_consulta]
       return lista_ciclistas
@@ -115,7 +121,7 @@ class CiclistaDAO:
       pass
 
     @staticmethod
-    def consultar_info_vigente_ciclista(conexion, num_ciclista):
+    def consultar_ciclista(conexion, num_ciclista):
       """
       Función consultar informacion viegente.
       Recibe un objeto Connection     (conexion).

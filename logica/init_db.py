@@ -27,6 +27,7 @@ def crear_tablas(conexion):
   direccion_sede_central TEXT,
   telefono INTEGER,
   correo_electronico TEXT)'''
+
   sentencia_ciclistas = '''CREATE TABLE IF NOT EXISTS ciclistas(
   num_inscripcion_ciclista INTEGER PRIMARY KEY AUTOINCREMENT,
   num_identificacion INTEGER,
@@ -38,6 +39,7 @@ def crear_tablas(conexion):
   fotografia TEXT,
   ranking_UIC TEXT,
   FOREIGN KEY(num_equipo) REFERENCES equipos(num_equipo))'''
+  
   sentencia_clasificacion = '''CREATE TABLE IF NOT EXISTS clasificacion(
   num_etapa INTEGER,
   num_ciclista INTEGER,

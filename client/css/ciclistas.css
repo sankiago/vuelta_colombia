@@ -242,8 +242,8 @@ main select.selectorClaro{
 }
 
 .detallesCiclista_contenedor input{
-    width: 11.9rem;
-    height: 3.2rem;
+    min-width: 13rem;
+    height: 3.4rem;
     font-size: 2rem;
     text-align: center;
     padding: 0;
@@ -284,6 +284,7 @@ main select.selectorClaro{
     font-family: 'Montserrat';
     color: var(--fondo);
     cursor: pointer;
+    display: none;
 }
 
 .detallesCiclista_contenedor a:visited{

@@ -77,30 +77,63 @@ const renderizar_detalles = ({
   ranking_UICNodo.textContent = ranking_UCI;
 };
 
+const ocultar_ventana = () =>{
+  const detalles = document.querySelector('.detallesCiclista_fondo')
+  detalles.style.display = 'none'
+}
+
+const buscar_usuario = async (event) => {
+  if (event.key === "Enter") {
+    let resultadoDeBusqueda = undefined;
+    if (!barraDeBusqueda.value) {
+      resultadoDeBusqueda = await eel.consultar_todos_los_ciclistas()();
+    } else {
+      resultadoDeBusqueda = await eel.barra_de_busqueda_general_ciclistas(
+        barraDeBusqueda.value
+      )();
+    }
+    renderizar_ciclistas(resultadoDeBusqueda);
+  }
+}
+
+const actualizarUsuario = () =>{
+  const numeroDeCiclista = document.querySelector('.detallesCiclista_contenedor .numeroDeInscripcion').textContent
+  const pais = document.querySelector('.detallesCiclista_contenedor input').value
+  eel.ciclista_actualizar_nacionalidad(numeroDeCiclista, pais)
+  alert('Se ha actualizado la nacionalidad 👍')
+  location.reload()
+}
+
+const mostrarBotonGuardarCambios = () =>{
+  const botonGuardarCambios = document.querySelector('.detallesCiclista_contenedor a')
+  botonGuardarCambios.style.display = 'flex'
+}
+
+const borrarCiclista = () =>{
+  confirm('¿Está seguro de eliminar al ciclista?😳😳😳')
+  const numeroDeCiclista = document.querySelector('.detallesCiclista_contenedor .numeroDeInscripcion').textContent
+  eel.eliminar_ciclista(numeroDeCiclista)()
+  alert('Ciclista eliminado💀🥵🤙')
+  location.reload()
+}
 
 async function main() {
   renderizar_ciclistas(await consultarTodosLosCiclistas());
 
-  let barraDeBusqueda = document.querySelector("input");
-  barraDeBusqueda.addEventListener("keyup", async (event) => {
-    if (event.key === "Enter") {
-      let resultadoDeBusqueda = undefined;
-      if (!barraDeBusqueda.value) {
-        resultadoDeBusqueda = await eel.consultar_todos_los_ciclistas()();
-      } else {
-        resultadoDeBusqueda = await eel.barra_de_busqueda_general_ciclistas(
-          barraDeBusqueda.value
-        )();
-      }
-      renderizar_ciclistas(resultadoDeBusqueda);
-    }
-  });
+  const barraDeBusqueda = document.querySelector("input");
+  barraDeBusqueda.addEventListener("keyup", buscar_usuario);
 
   const botonDeCerrar = document.querySelector('.closeWindow')
-  const detalles = document.querySelector('.detallesCiclista_fondo')
-  botonDeCerrar.addEventListener('click', function(){
-    detalles.style.display = 'none'
-  })
+  botonDeCerrar.addEventListener('click', ocultar_ventana)
+
+  const detallesCiclista = document.querySelector('.detallesCiclista_contenedor')
+  detallesCiclista.addEventListener('input', mostrarBotonGuardarCambios)
+
+  const botonGuardarCambios = document.querySelector('.detallesCiclista_contenedor a')
+  botonGuardarCambios.addEventListener('click', actualizarUsuario)
+
+  const botonBorrarCiclista = document.querySelector('.borrarCiclista')
+  botonBorrarCiclista.addEventListener('click', borrarCiclista)
 }
 
 main();
