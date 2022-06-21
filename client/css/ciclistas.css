@@ -282,7 +282,7 @@ main select.selectorClaro{
 }
 
 .detallesCiclista_contenedor input{
-    min-width: 13rem;
+    width: 13rem;
     height: 3.4rem;
     font-size: 2rem;
     text-align: center;
