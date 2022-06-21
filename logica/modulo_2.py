@@ -51,6 +51,25 @@ class CiclistaDAO:
       """
       cursor.execute(sentencia_actualizacion)
       conexion.commit()
+   
+    @staticmethod
+    def actualizar_ranking(conexion, id_ciclista, nuevo_ranking):
+      """
+      Función actualización Pais.
+      Recibe el número del ciclista pra la actualización del pais (num_identificacion).
+      Recibe el nuevo país.
+      """
+      cursor                  = conexion.cursor()
+      sentencia_actualizacion = f"""
+      UPDATE
+        ciclistas
+      SET
+        ranking_UIC  = '{nuevo_ranking}'
+      WHERE 
+        num_inscripcion_ciclista = {id_ciclista}
+      """
+      cursor.execute(sentencia_actualizacion)
+      conexion.commit()
 
     @staticmethod
     def buscar_en_todos_los_campos(conexion, cadena_de_busqueda):

@@ -38,8 +38,13 @@ def ciclista_actualizar_nacionalidad(numero_de_ciclista, nuevo_pais):
     CiclistaDAO.actualizar_pais(conexion, numero_de_ciclista, nuevo_pais)
     print(f'Se actualizó la nacionalidad del ciclista {numero_de_ciclista}')
 
+@eel.expose
+def ciclista_actualizar_ranking(numero_de_ciclista, nuevo_ranking):
+    CiclistaDAO.actualizar_ranking(conexion, numero_de_ciclista, nuevo_ranking)
+    print(f'Se actualizó el ranking del ciclista {numero_de_ciclista}')
+
 
 
 #Inicializar conexión js/python
 eel.init('client')
-eel.start('home.html', cmdline_args=['--start-fullscreen'])
+eel.start('home.html')

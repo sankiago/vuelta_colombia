@@ -74,7 +74,7 @@ const renderizar_detalles = ({
   numeroDeIdentificacionNodo.textContent = num_identificacion;
   fechaDeNacimientoNodo.textContent = fecha_nacimiento_formateada;
   paisNodo.value = pais;
-  ranking_UICNodo.textContent = ranking_UCI;
+  ranking_UICNodo.value = ranking_UCI;
 };
 
 const ocultar_ventana = () =>{
@@ -98,9 +98,14 @@ const buscar_usuario = async (event) => {
 
 const actualizarUsuario = () =>{
   const numeroDeCiclista = document.querySelector('.detallesCiclista_contenedor .numeroDeInscripcion').textContent
-  const pais = document.querySelector('.detallesCiclista_contenedor input').value
+  const pais = document.querySelector('.detallesCiclista_contenedor .detalle#pais input').value
   eel.ciclista_actualizar_nacionalidad(numeroDeCiclista, pais)
   alert('Se ha actualizado la nacionalidad 👍')
+  
+  const ranking_UCI = document.querySelector('.detallesCiclista_contenedor .detalle#ranking_UIC input').value
+  eel.ciclista_actualizar_ranking(numeroDeCiclista, ranking_UCI)
+  alert('Se ha actualizado el rankig UCI 👍')
+
   location.reload()
 }
 
