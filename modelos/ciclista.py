@@ -35,7 +35,7 @@ class Ciclista(Modelo):
   def convertir_a_lista(self):
     #num_inscripcion_ciclista, num_identificacion , nombre, apellido , strftime("%d/%m/%Y",fecha_de_nacimiento,"unixepoch") , pais,   num_equipo, ranking_UCI
     
-    lista_ciclista = [self.num_identificacion, self.nombre, self.apellido, self.fecha_nacimiento_formateada, self.pais, self.num_equipo, self.ranking_UCI]
+    lista_ciclista = [self.num_identificacion, self.nombre, self.apellido, self.fotografia, self.fecha_nacimiento_formateada, self.pais, self.num_equipo, self.ranking_UCI]
 
     if hasattr(self, 'num_inscripcion'):
       lista_ciclista.insert(0, self.num_inscripcion)

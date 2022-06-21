@@ -29,7 +29,8 @@ class CiclistaDAO:
           ranking_UIC
           )
       VALUES
-      (?,?,?,strftime("%s", ?),?,?,?)"""
+        (?,?,?,?,strftime("%s", ?),?,?,?)
+      """
       cursor.execute(sentencia_insercion, ciclista.convertir_a_lista())
       conexion.commit()
             

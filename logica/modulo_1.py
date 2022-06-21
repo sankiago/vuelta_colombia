@@ -69,6 +69,7 @@ class EquipoDAO:
       """
       cursor             = conexion.cursor()
       sentencia_consulta = f'SELECT * FROM equipos WHERE num_equipo = {id_equipo}'
+      print(sentencia_consulta)
       respuesta_consulta = cursor.execute(sentencia_consulta).fetchall()
       if len(respuesta_consulta) == 0:
         equipo_consultado = None
@@ -76,6 +77,29 @@ class EquipoDAO:
         equipo_consultado  = Equipo(lista_de_informacion=respuesta_consulta[0])
 
       return equipo_consultado
+    
+    @staticmethod
+    def id_de_equipo_por_nombre(conexion, nombre):
+      """
+      Función consulta por número de equipo.
+      Recibe un objeto Connection (conexion).
+      Recibe el número de equipo a consultar (id_equipo).
+      """
+      cursor             = conexion.cursor()
+      sentencia_consulta = f"""
+      SELECT
+        num_equipo
+      FROM
+        equipos
+      WHERE
+        (REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(nombre,'á','a'),'é','e' ),'í','i'),'ó','o'),'ú','u') = '{nombre}' COLLATE NOCASE )
+      """
+      respuesta_consulta = cursor.execute(sentencia_consulta).fetchall()
+      if len(respuesta_consulta) == 0:
+        id_del_equipo = None
+      else:
+        id_del_equipo = respuesta_consulta[0][0]
+      return id_del_equipo
 
     @staticmethod
     def cambiar_sede_equipo(conexion, id_equipo, nuevo_pais, nueva_direccion):

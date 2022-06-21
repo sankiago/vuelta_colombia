@@ -36,7 +36,7 @@ def crear_tablas(conexion):
   fecha_de_nacimiento INTEGER,
   pais TEXT,
   num_equipo INTEGER,
-  fotografia BLOB,
+  fotografia TEXT,
   ranking_UIC TEXT,
   FOREIGN KEY(num_equipo) REFERENCES equipos(num_equipo))'''
   

@@ -40,4 +40,3 @@ class EtapaDAO:
       self.sentencia_actualizacion = f'UPDATE clasificacion SET posicion_etapa={nueva_posicion},tiempo_empleado = "{nuevo_tiempo}" WHERE num_ciclista = {num_ciclista}'
       cursor.execute(self.sentencia_actualizacion)
       conexion.commit()
-

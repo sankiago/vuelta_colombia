@@ -82,10 +82,10 @@ const ocultar_ventana = () =>{
   detalles.style.display = 'none'
 }
 
-const buscar_usuario = async (event) => {
-  if (event.key === "Enter") {
+async function buscar_usuario(my_event){
+  if (my_event.key === "Enter") {
     let resultadoDeBusqueda = undefined;
-    if (!barraDeBusqueda.value) {
+    if (!this.value) {
       resultadoDeBusqueda = await eel.consultar_todos_los_ciclistas()();
     } else {
       resultadoDeBusqueda = await eel.barra_de_busqueda_general_ciclistas(
